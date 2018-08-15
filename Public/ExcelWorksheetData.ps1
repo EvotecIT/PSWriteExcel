@@ -8,7 +8,7 @@ function Add-ExcelWorksheetData {
         [int]$StartColumn = 1,
         [switch] $AutoFit,
         [switch] $AutoFilter,
-        [string] $WorksheetName,
+        [alias('Name', 'WorksheetName')][string] $ExcelWorksheetName,
         [alias('Rotate', 'RotateData', 'TransposeColumnsRows', 'TransposeData')][switch] $Transpose,
         [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE'
     )
@@ -17,10 +17,10 @@ function Add-ExcelWorksheetData {
         $RowNr = $StartRow
         $ColumnNr = $StartColumn
         if ($ExcelWorksheet) {
-            Write-Verbose "Testing..."
+            Write-Verbose "Add-ExcelWorkSheetData - ExcelWorksheet given. Continuing..."
         } else {
             if ($ExcelDocument) {
-                $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -Name $WorksheetName
+                $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -Name $ExcelWorksheetName
             } else {
                 Write-Warning 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. No data will be added...'
                 # throw 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. Terminating.'
@@ -79,6 +79,7 @@ function Add-ExcelWorksheetData {
 }
 
 function Set-ExcelWorksheetAutoFilter {
+    [CmdletBinding()]
     param (
         [OfficeOpenXml.ExcelWorksheet] $ExcelWorksheet,
         [string] $DataRange,
@@ -89,15 +90,20 @@ function Set-ExcelWorksheetAutoFilter {
     }
 }
 function Set-ExcelWorksheetAutoFit {
+    [CmdletBinding()]
     param (
         [OfficeOpenXml.ExcelWorksheet] $ExcelWorksheet
     )
     if ($ExcelWorksheet) {
-        $ExcelWorksheet.Cells.AutoFitColumns(0)
+        Write-Verbose "Set-ExcelWorksheetAutoFit - Columns Count: $($ExcelWorksheet.Cells.Columns)"
+        if ($ExcelWorksheet.Cells.Columns -gt 0) {
+            $ExcelWorksheet.Cells.AutoFitColumns(0)
+        }
     }
 }
 
 function Set-ExcelTranslateFromR1C1 {
+    [CmdletBinding()]
     param(
         [int]$Row,
         [int]$Column = 1
@@ -108,6 +114,7 @@ function Set-ExcelTranslateFromR1C1 {
 }
 
 function Remove-ExcelWorksheet {
+    [CmdletBinding()]
     param (
         [alias('ExcelWorkbook')][OfficeOpenXml.ExcelPackage]  $ExcelDocument,
         [OfficeOpenXml.ExcelWorksheet] $ExcelWorksheet

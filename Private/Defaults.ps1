@@ -1,0 +1,1 @@
+[int] $Script:SaveCounter = 0
