@@ -30,7 +30,7 @@
     Copyright         = 'Evotec (c) 2011-2018. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description       = 'Little project to create Excel files'
+    Description       = 'Little project to create Excel files without Microsoft Excel being installed.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     # PowerShellVersion = ''
