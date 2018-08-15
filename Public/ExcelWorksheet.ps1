@@ -1,17 +1,17 @@
-
-
 function Add-ExcelWorkSheet {
     [cmdletBinding()]
     param (
         [OfficeOpenXml.ExcelPackage]  $ExcelDocument,
-        [string] $Name,
+        [alias('Name')][string] $WorksheetName,
         [string] $Option = 'Skip',
         [bool] $Supress
     )
-    if ($Name.Length -gt 31) {
-        $WorksheetName = $Name.Substring(0, 31)
-    } else {
-        $WorksheetName = $Name
+    $WorksheetName = $WorksheetName.Trim()
+    if ($WorksheetName.Length -eq 0) {
+        $WorksheetName = -join ((48..57) + (97..122) | Get-Random -Count 31 | % {[char]$_})
+        Write-Warning "Add-ExcelWorkSheet - Name is empty. Generated random name: $WorksheetName"
+    } elseif ($WorksheetName.Length -gt 31) {
+        $WorksheetName = $WorksheetName.Substring(0, 31)
     }
 
     $PreviousWorksheet = Get-ExcelWorkSheet -ExcelDocument $ExcelDocument -Name $WorksheetName
@@ -19,13 +19,13 @@ function Add-ExcelWorkSheet {
         #Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName already exists"
         if ($Option -eq 'Skip') {
             #Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName - skipping"
-            Write-Warning "Worksheet $WorksheetName already exists. Skipping."
-            Write-Warning "You can overwrite this setting with one of the Options: Delete, Skip, Rename"
+            Write-Warning "Add-ExcelWorkSheet - Worksheet $WorksheetName already exists. Skipping."
+            Write-Warning "Add-ExcelWorkSheet - You can overwrite this setting with one of the Options: Delete, Skip, Rename"
             return
         } elseif ($Option -eq 'Replace') {
-            #Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName - replace"
-            $ExcelDocument.Workbook.Worksheets.Delete($PreviousWorksheet)
-            Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -Name $Name -Option $Option -Supress $Supress
+            Write-Verbose "Add-ExcelWorkSheet - WorksheetName: $WorksheetName - exists. Replacing..."
+            Remove-ExcelWorksheet -ExcelDocument $ExcelDocument -ExcelWorksheet $PreviousWorksheet
+            Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -WorksheetName $WorksheetName -Option $Option -Supress $Supress
         } elseif ($Option -eq 'Rename') {
             #Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName - rename"
         } else {
@@ -33,12 +33,12 @@ function Add-ExcelWorkSheet {
         }
 
     } else {
-        Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName doesn't exists"
+        Write-Verbose "Add-ExcelWorkSheet - WorksheetName: $WorksheetName doesn't exists in Workbook. Continuing..."
         $Data = $ExcelDocument.Workbook.Worksheets.Add($WorksheetName)
 
         if ($Data.Name -ne $WorksheetName) {
-            Write-Warning "Name was changed from:'$Name' to new name: '$($Data.Name)'."
-            Write-Warning "Maximum amount of chars is 31 for worksheet name"
+            Write-Warning "Add-ExcelWorkSheet - WorksheetName was changed from:'$WorksheetName' to new name: '$($Data.Name)'."
+            Write-Warning "Add-ExcelWorkSheet - Maximum amount of chars is 31 for worksheet name"
         }
     }
     if ($Supress) { return } else { return $Data }
@@ -53,4 +53,18 @@ function Get-ExcelWorkSheet {
     )
     $Data = $ExcelDocument.Workbook.Worksheets | Where { $_.Name -eq $Name }
     return $Data
+}
+
+function Add-ExcelWorkSheetCell {
+    param(
+        [OfficeOpenXml.ExcelWorksheet]  $ExcelWorksheet,
+        [int] $CellRow,
+        [int] $CellColumn,
+        [Object] $CellValue,
+        [bool] $Supress
+    )
+    if ($ExcelWorksheet) {
+        $Data = $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue
+    }
+    if ($Supress) { return } else { $Data }
 }
