@@ -101,7 +101,6 @@ function Set-ExcelWorksheetAutoFit {
         }
     }
 }
-
 function Set-ExcelTranslateFromR1C1 {
     [CmdletBinding()]
     param(
@@ -112,7 +111,6 @@ function Set-ExcelTranslateFromR1C1 {
     $Range = [OfficeOpenXml.ExcelAddress]::TranslateFromR1C1("R[$Row]C[$Column]", 0, 0)
     return $Range
 }
-
 function Remove-ExcelWorksheet {
     [CmdletBinding()]
     param (
