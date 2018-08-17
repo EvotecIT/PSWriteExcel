@@ -38,14 +38,14 @@ function Add-ExcelWorksheetData {
                 #Write-Verbose "Add-ExcelWorksheetData - Headers: $($WorksheetHeaders -join ', ') - Data Count: $($Data.Count)"
                 if ($NoHeader) {
                     $Data.RemoveAt(0);
-                    Write-Verbose "Removed header from ArrayList - Data Count: $($Data.Count)"
+                    #Write-Verbose "Removed header from ArrayList - Data Count: $($Data.Count)"
                 }
                 $ArrRowNr = 0
                 foreach ($RowData in $Data) {
                     $ArrColumnNr = 0
                     $ColumnNr = $StartColumn
                     foreach ($Value in $RowData) {
-                        Write-Verbose "Row: $RowNr / $ArrRowNr Column: $ColumnNr / $ArrColumnNr Data: $Value Title: $($WorksheetHeaders[$ArrColumnNr])"
+                        #Write-Verbose "Row: $RowNr / $ArrRowNr Column: $ColumnNr / $ArrColumnNr Data: $Value Title: $($WorksheetHeaders[$ArrColumnNr])"
                         Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value -Supress $True
                         $ColumnNr++
                         $ArrColumnNr++
@@ -63,7 +63,7 @@ function Add-ExcelWorksheetData {
                     $ArrColumnNr = 0
                     $ColumnNr = $StartColumn
                     foreach ($Value in $RowData) {
-                        Write-Verbose "Row: $RowNr / $ArrRowNr Column: $ColumnNr / $ArrColumnNr Data: $Value Title: $($WorksheetHeaders[$ArrColumnNr])"
+                        #Write-Verbose "Row: $RowNr / $ArrRowNr Column: $ColumnNr / $ArrColumnNr Data: $Value Title: $($WorksheetHeaders[$ArrColumnNr])"
                         Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value -Supress $True
                         $ColumnNr++; $ArrColumnNr++
                     }
