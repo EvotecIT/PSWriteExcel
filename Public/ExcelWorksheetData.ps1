@@ -32,7 +32,7 @@ function Add-ExcelWorksheetData {
             if ($FirstRun) {
                 $FirstRun = $false
                 Write-Verbose "Add-ExcelWorksheetData - FirstRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
-                if ($Transpose) { $DataTable = Format-TransposeTable -Object $TargetData -Sort $TransposeSort }
+                if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
                 $Data = Format-PSTable $DataTable -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet # -SkipTitle:$NoHeader
                 $WorksheetHeaders = $Data[0] # Saving Header information for later use
                 Write-Verbose "$($WorksheetHeaders -join ', ') - Data Count: $($Data.Count)"
