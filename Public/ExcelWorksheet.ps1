@@ -85,6 +85,10 @@ function Add-ExcelWorkSheetCell {
                 $Data = $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Numberformat.Format = 'hh:mm:ss'
                 break
             }
+            { $_ -is [Int64]} {
+                $Data = $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue
+                $Data = $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Numberformat.Format = '#'
+            }
             Default {
                 $Data = $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue
             }
