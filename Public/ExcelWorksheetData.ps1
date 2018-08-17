@@ -31,7 +31,7 @@ function Add-ExcelWorksheetData {
         if ((Get-ObjectCount -Object $DataTable) -ne 0) {
             if ($FirstRun) {
                 $FirstRun = $false
-                Write-Verbose "Add-ExcelWorksheetData - FirstRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
+                #Write-Verbose "Add-ExcelWorksheetData - FirstRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
                 if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
                 $Data = Format-PSTable $DataTable -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet # -SkipTitle:$NoHeader
                 $WorksheetHeaders = $Data[0] # Saving Header information for later use
@@ -55,7 +55,7 @@ function Add-ExcelWorksheetData {
 
                 }
             } else {
-                Write-Verbose "Add-ExcelWorksheetData - NextRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
+                #Write-Verbose "Add-ExcelWorksheetData - NextRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
                 if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
                 $Data = Format-PSTable $DataTable -SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $WorksheetHeaders
                 $ArrRowNr = 0
