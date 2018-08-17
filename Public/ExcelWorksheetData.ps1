@@ -35,7 +35,7 @@ function Add-ExcelWorksheetData {
                 if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
                 $Data = Format-PSTable $DataTable -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet # -SkipTitle:$NoHeader
                 $WorksheetHeaders = $Data[0] # Saving Header information for later use
-                Write-Verbose "$($WorksheetHeaders -join ', ') - Data Count: $($Data.Count)"
+                #Write-Verbose "Add-ExcelWorksheetData - Headers: $($WorksheetHeaders -join ', ') - Data Count: $($Data.Count)"
                 if ($NoHeader) {
                     $Data.RemoveAt(0);
                     Write-Verbose "Removed header from ArrayList - Data Count: $($Data.Count)"
@@ -57,14 +57,14 @@ function Add-ExcelWorksheetData {
             } else {
                 Write-Verbose "Add-ExcelWorksheetData - NextRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
                 if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
-                $Data = Format-PSTable $DataTable -SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet
+                $Data = Format-PSTable $DataTable -SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $WorksheetHeaders
                 $ArrRowNr = 0
                 foreach ($RowData in $Data) {
                     $ArrColumnNr = 0
                     $ColumnNr = $StartColumn
                     foreach ($Value in $RowData) {
-                        #Write-Verbose "Row: $RowNr / $ArrRowNr Column: $ColumnNr / $ArrColumnNr Data: $Value Title: $($script:Header[$ArrColumnNr])"
-                        Add-ExcelWorkSheetCell -ExcelWorksheet $ws -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value -Supress $True
+                        Write-Verbose "Row: $RowNr / $ArrRowNr Column: $ColumnNr / $ArrColumnNr Data: $Value Title: $($WorksheetHeaders[$ArrColumnNr])"
+                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value -Supress $True
                         $ColumnNr++; $ArrColumnNr++
                     }
                     $RowNr++; $ArrRowNr++
