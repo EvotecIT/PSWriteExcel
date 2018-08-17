@@ -92,6 +92,7 @@ function Format-PSTableConvertType2 {
         } else {
             $ObjectProperties = $O.PSObject.Properties.Where( { $PropertyType -notcontains $_.MemberType -and $ExcludeProperty -notcontains $_.Name  } ).Name
         }
+        #$ObjectProperties = $O.PSObject.Properties
         foreach ($Name in $ObjectProperties) {
             if ($Run -eq 0 -and -not $SkipTitle) { Add-ToArray -List $Titles -Element $Name }
             Add-ToArray -List $ArrayValues -Element $O.$Name
@@ -180,23 +181,19 @@ function Format-PSTable {
 function Show-TableVisualization {
     [CmdletBinding()]
     param (
-        [parameter(ValueFromPipelineByPropertyName, ValueFromPipeline)] $Object,
-        [switch] $Color
+        [parameter(ValueFromPipelineByPropertyName, ValueFromPipeline)] $Object
     )
     if ($Color) { Write-Color "[i] This is how table looks like in Format-Table" -Color Yellow }
     Write-Verbose '[i] This is how table looks like in Format-Table'
     $Object | Format-Table -AutoSize
     $Data = Format-PSTable $Object #-Verbose
-    # $Data.Count
-    #$Data[0].Count
-    if ($Color) { Write-Color "[i] Rows Count ", $Data.Count, " Column Count ", $Data[0].Count -Color Yellow }
+
     Write-Verbose "[i] Rows Count $($Data.Count) Column Count $($Data[0].Count)"
     $RowNr = 0
     if ($Color) { Write-Color "[i] Presenting table after conversion" -Color Yellow }
     foreach ($Row in $Data) {
         $ColumnNr = 0
         foreach ($Column in $Row) {
-            if ($Color) { Write-Color 'Row: ', $RowNr, ' Column: ', $ColumnNr, " Data: ", $Column -Color White, Yellow, White, Green }
             Write-Verbose "Row: $RowNr Column: $ColumnNr Data: $Column"
             $ColumnNr++
         }

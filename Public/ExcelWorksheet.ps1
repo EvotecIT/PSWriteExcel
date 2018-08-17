@@ -65,7 +65,6 @@ function Add-ExcelWorkSheetCell {
     )
     if ($ExcelWorksheet) {
         $Type = Get-ObjectType $CellValue
-
         Switch ($CellValue) {
             { $_ -and $Type.ObjectTypeName -eq 'PSCustomObject' } {
                 $Data = $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue

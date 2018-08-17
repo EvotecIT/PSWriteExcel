@@ -77,7 +77,7 @@ function Get-ObjectType {
         $Return.SystemType = $TypeInformation.UnderlyingSystemType
 
         if ((Get-ObjectCount $Object) -gt 0) {
-            Write-Verbose "$($Object.Count)"
+            #Write-Verbose "Get-ObjectType - $($Object.Count)"
             $TypeInformationInsider = $Object[0].GetType()
             $Return.ObjectTypeInsiderName = $TypeInformationInsider.Name
             $Return.ObjectTypeInsiderBaseName = $TypeInformationInsider.BaseType
