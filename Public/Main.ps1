@@ -34,5 +34,11 @@ function Save-ExcelDocument {
         }
     }
 
-    if ($OpenWorkBook) { Invoke-Item -Path $FilePath }
+    if ($OpenWorkBook) {
+        if (Test-Path $FilePath) {
+            Invoke-Item -Path $FilePath
+        } else {
+            Write-Warning "Save-ExcelDocument - File $FilePath doesn't exists. Can't open Excel document."
+        }
+    }
 }
