@@ -6,6 +6,14 @@ function New-ExcelDocument {
     return $Excel
 }
 
+function Get-ExcelDocument {
+    param(
+        $Path
+    )
+    $Excel = New-Object -TypeName OfficeOpenXml.ExcelPackage -ArgumentList $Path
+    return $Excel
+}
+
 function Save-ExcelDocument {
     param (
         [parameter(Mandatory = $true, ValueFromPipeline = $true)][Alias('Document', 'Excel', 'Package')] $ExcelDocument,
