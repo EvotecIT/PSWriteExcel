@@ -2,7 +2,6 @@
 Import-Module PSWriteExcel -Force
 
 $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-Test.xlsx"
-$FilePath1 = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-Test1.xlsx"
 
 $Excel = New-ExcelDocument -Verbose
 
