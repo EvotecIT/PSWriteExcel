@@ -86,7 +86,12 @@ function Set-ExcelWorksheetAutoFilter {
         [bool] $AutoFilter
     )
     if ($ExcelWorksheet) {
+        if (-not $DataRange) {
+            # if $DateRange was not provided try to get one from worksheet dimensions
+            $DataRange = $ExcelWorksheet.Dimension
+        }
         $ExcelWorksheet.Cells[$DataRange].AutoFilter = $AutoFilter
+
     }
 }
 function Set-ExcelWorksheetAutoFit {
