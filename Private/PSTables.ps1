@@ -169,7 +169,8 @@ function Format-PSTable {
         #Write-Verbose 'Level 0-0'
         if ($Type.ObjectTypeInsiderName -match 'string|bool|byte|char|decimal|double|float|int|long|sbyte|short|uint|ulong|ushort') {
             #Write-Verbose 'Level 1-0'
-            return Format-PSTableConvertType1 -Object $Object -SkipTitle:$SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $OverwriteHeaders
+            return $Object
+            #return Format-PSTableConvertType1 -Object $Object -SkipTitle:$SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $OverwriteHeaders
         } elseif ($Type.ObjectTypeInsiderName -eq 'Object' -or $Type.ObjectTypeInsiderName -eq 'PSCustomObject') {
             # Write-Verbose 'Level 1-1'
             return Format-PSTableConvertType2 -Object $Object -SkipTitle:$SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $OverwriteHeaders

@@ -2,6 +2,7 @@ function New-ExcelDocument {
     param(
 
     )
+    $Script:SaveCounter = 0
     $Excel = New-Object -TypeName OfficeOpenXml.ExcelPackage
     return $Excel
 }
@@ -10,6 +11,7 @@ function Get-ExcelDocument {
     param(
         $Path
     )
+    $Script:SaveCounter = 0
     $Excel = New-Object -TypeName OfficeOpenXml.ExcelPackage -ArgumentList $Path
     return $Excel
 }
