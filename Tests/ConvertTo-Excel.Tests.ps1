@@ -126,7 +126,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\17.xlsx"
         $myitems0 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 4
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 3
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'name'
@@ -145,7 +145,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\18.xlsx"
         $myitems1 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 3
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'name'
@@ -163,7 +163,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\1.xlsx"
         $myitems1 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 3
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'name'
@@ -183,7 +183,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\2.xlsx"
         $InvoiceEntry1 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 3
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -203,7 +203,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\3.xlsx"
         $InvoiceData1 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 11
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -223,7 +223,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\4.xlsx"
         $InvoiceData2 | ConvertTo-Excel -Path $Path #-NoNumberConversion 'Amount'
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 6
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Description'
@@ -243,7 +243,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\5.xlsx"
         $InvoiceData3 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 3
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -263,7 +263,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\6.xlsx"
         $InvoiceData4 | ConvertTo-Excel -Path $Path #-NoNumberConversion 'Amount'
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Description'
@@ -283,7 +283,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\7.xlsx"
         $Object1 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 6
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 3
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'ProcessName'
@@ -304,7 +304,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\8.xlsx"
         $Object2 | ConvertTo-Excel -Path $Path #-Verbose
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 4
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
         # Not sure yet how to predict thje order. Seems order of FT -a is differnt then FL and script takes FL for now
@@ -324,7 +324,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\9.xlsx"
         $Object3 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 1
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Used'
@@ -343,7 +343,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\10.xlsx"
         $Object4 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 1
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Used'
@@ -362,7 +362,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\11.xlsx"
         $obj | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 4
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -383,7 +383,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\12.xlsx"
         $myArray1 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 4
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 4
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -405,7 +405,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\13.xlsx"
         $myArray2 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 4
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -427,7 +427,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\14.xlsx"
         $InvoiceEntry7 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 3
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -445,7 +445,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\15.xlsx"
         $InvoiceDataOrdered1 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 3
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -462,7 +462,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\16.xlsx"
         $InvoiceDataOrdered2 | ConvertTo-Excel -Path $Path #-Show
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 5
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -488,7 +488,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\17.xlsx"
         ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -DataTable $myitems0
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 4
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 3
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'name'
@@ -508,7 +508,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\18.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $myitems1
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 3
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'name'
@@ -526,7 +526,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\1.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $MyItems2
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 3
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'name'
@@ -546,7 +546,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\2.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $InvoiceEntry1
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 3
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -566,7 +566,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\3.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $InvoiceData1
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 11
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -587,7 +587,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\4.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $InvoiceData2 #-NoNumberConversion 'Amount'
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 6
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Description'
@@ -608,7 +608,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\5.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $InvoiceData3
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 3
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -629,7 +629,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\6.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $InvoiceData4 #-NoNumberConversion 'Amount'
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Description'
@@ -650,7 +650,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\7.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $Object1
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 6
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 3
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'ProcessName'
@@ -671,7 +671,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\8.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $Object2
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 4
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
         # Not sure yet how to predict thje order. Seems order of FT -a is differnt then FL and script takes FL for now
@@ -691,7 +691,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\9.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $Object3
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 1
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Used'
@@ -710,7 +710,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\10.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $Object4
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 1
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Used'
@@ -729,7 +729,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\11.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $obj
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 4
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -750,7 +750,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\12.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $myArray1
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 4
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 4
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -772,7 +772,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\13.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $myArray2
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 2
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 4
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -794,7 +794,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\14.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $InvoiceEntry7
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 3
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -812,7 +812,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\15.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $InvoiceDataOrdered1
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 3
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'
@@ -829,7 +829,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
         $Path = "$Env:TEMP\16.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $InvoiceDataOrdered2
-        $pkg = Open-ExcelPackage -Path $Path -KillExcel:$KillExcel
+        $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -Be 5
         $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 2
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Name'

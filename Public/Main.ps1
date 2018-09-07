@@ -9,7 +9,7 @@ function New-ExcelDocument {
 
 function Get-ExcelDocument {
     param(
-        $Path
+        [alias("FilePath")][string] $Path
     )
     $Script:SaveCounter = 0
     $Excel = New-Object -TypeName OfficeOpenXml.ExcelPackage -ArgumentList $Path
