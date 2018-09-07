@@ -20,9 +20,12 @@ $myitems0 = @(
     }
 )
 
-Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter
-Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet2 -DataTable $myitems0 -AutoFit -AutoFilter
-Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet3 -DataTable $myitems0 -AutoFit -AutoFilter
-Add-ExcelWorksheetData -DataTable $myitems0 -Verbose -AutoFit -AutoFilter
-Add-ExcelWorksheetData -DataTable $myitems0 -AutoFit -AutoFilter -ExcelDocument $Excel
+Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet2 -DataTable $myitems0 -AutoFit -AutoFilter  -Supress $True
+Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet3 -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+Add-ExcelWorksheetData -DataTable $myitems0 -Verbose -AutoFit -AutoFilter -Supress $True
+Add-ExcelWorksheetData -DataTable $myitems0 -AutoFit -AutoFilter -ExcelDocument $Excel -Supress $True
+
+$myitems0 | Add-ExcelWorksheetData -AutoFit -AutoFilter -ExcelDocument $Excel -ExcelWorksheetName 'Hello Motto' -Supress $True
+
 Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook

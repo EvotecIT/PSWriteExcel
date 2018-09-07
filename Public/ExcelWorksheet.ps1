@@ -3,7 +3,7 @@ function Add-ExcelWorkSheet {
     param (
         [OfficeOpenXml.ExcelPackage]  $ExcelDocument,
         [alias('Name')][string] $WorksheetName,
-        [string] $Option = 'Skip',
+        [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Skip',
         [bool] $Supress
     )
     $WorksheetName = $WorksheetName.Trim()
@@ -20,12 +20,12 @@ function Add-ExcelWorkSheet {
         if ($Option -eq 'Skip') {
             #Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName - skipping"
             Write-Warning "Add-ExcelWorkSheet - Worksheet $WorksheetName already exists. Skipping."
-            Write-Warning "Add-ExcelWorkSheet - You can overwrite this setting with one of the Options: Delete, Skip, Rename"
+            Write-Warning "Add-ExcelWorkSheet - You can overwrite this setting with one of the Options: Replace, Skip, Rename"
             return
         } elseif ($Option -eq 'Replace') {
             Write-Verbose "Add-ExcelWorkSheet - WorksheetName: $WorksheetName - exists. Replacing..."
             Remove-ExcelWorksheet -ExcelDocument $ExcelDocument -ExcelWorksheet $PreviousWorksheet
-            Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -WorksheetName $WorksheetName -Option $Option -Supress $Supress
+            $Data = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -WorksheetName $WorksheetName -Option $Option -Supress $False
         } elseif ($Option -eq 'Rename') {
             #Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName - rename"
         } else {

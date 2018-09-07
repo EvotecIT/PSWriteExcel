@@ -1,21 +1,22 @@
 function Add-ExcelWorksheetData {
     [CmdletBinding()]
     Param(
-        [alias('ExcelWorkbook')][OfficeOpenXml.ExcelPackage]  $ExcelDocument,
-        [OfficeOpenXml.ExcelWorksheet] $ExcelWorksheet,
-        [Parameter(ValueFromPipeline = $true)]$DataTable,
+        [alias('ExcelWorkbook')][OfficeOpenXml.ExcelPackage] $ExcelDocument,
+        $ExcelWorksheet, # [OfficeOpenXml.ExcelWorksheet]
+        [Parameter(ValueFromPipeline = $true)][Object] $DataTable,
         [int]$StartRow = 1,
         [int]$StartColumn = 1,
         [switch] $AutoFit,
         [switch] $AutoFilter,
         [alias('Name', 'WorksheetName')][string] $ExcelWorksheetName,
         [alias('Rotate', 'RotateData', 'TransposeColumnsRows', 'TransposeData')][switch] $Transpose,
-        [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE'
+        [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE',
+        [bool] $Supress
     )
     Begin {
         $FirstRun = $True
-        $RowNr = $StartRow
-        $ColumnNr = $StartColumn
+        $RowNr = if ($StartRow -ne $null -and $StartRow -ne 0) { $StartRow } else { 1 }
+        $ColumnNr = if ($StartColumn -ne $null -and $StartColumn -ne 0 ) { $StartColumn } else { 1 }
         if ($ExcelWorksheet) {
             Write-Verbose "Add-ExcelWorkSheetData - ExcelWorksheet given. Continuing..."
         } else {
@@ -26,6 +27,7 @@ function Add-ExcelWorksheetData {
                 # throw 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. Terminating.'
             }
         }
+        Write-Verbose "Add-ExcelWorksheetData - Excel Row: $RowNr Column: $ColumnNr"
     }
     Process {
         if ((Get-ObjectCount -Object $DataTable) -ne 0) {
@@ -75,7 +77,9 @@ function Add-ExcelWorksheetData {
     End {
         if ($AutoFit) { Set-ExcelWorksheetAutoFit -ExcelWorksheet $ExcelWorksheet }
         if ($AutoFilter) { Set-ExcelWorksheetAutoFilter -ExcelWorksheet $ExcelWorksheet -DataRange $ExcelWorksheet.Dimension -AutoFilter $AutoFilter }
+        if ($Supress) { return } else { return $ExcelWorkSheet }
     }
+
 }
 
 function Set-ExcelWorksheetAutoFilter {
