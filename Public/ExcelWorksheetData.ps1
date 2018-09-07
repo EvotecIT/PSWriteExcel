@@ -6,7 +6,7 @@ function Add-ExcelWorksheetData {
         [Parameter(ValueFromPipeline = $true)][Object] $DataTable,
         [int]$StartRow = 1,
         [int]$StartColumn = 1,
-        [switch] $AutoFit,
+        [alias("Autosize")][switch] $AutoFit,
         [switch] $AutoFilter,
         [alias('Name', 'WorksheetName')][string] $ExcelWorksheetName,
         [alias('Rotate', 'RotateData', 'TransposeColumnsRows', 'TransposeData')][switch] $Transpose,
