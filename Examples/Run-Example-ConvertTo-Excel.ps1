@@ -1,6 +1,4 @@
-
 Import-Module PSWriteExcel -Force
-
 
 $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-Test1.xlsx"
 
@@ -11,6 +9,7 @@ $myitems0 = @(
     }
 )
 
-ConvertTo-Excel -DataTable $myitems0 -FilePath $FilePath -ExcelWorkSheetName 'This is my test' -AutoFilter -AutoFit
-
-$myitems0 | ConvertTo-Excel -FilePath $FilePath -ExcelWorkSheetName 'This is my test2' -AutoFilter -AutoFit -Verbose -OpenWorkBook -Option Skip
+# Standard way
+ConvertTo-Excel -DataTable $myitems0 -FilePath $FilePath -ExcelWorkSheetName 'This is my test' -AutoFilter -AutoFit -FreezeTopRow #-Verbose
+# pipeline
+$myitems0 | ConvertTo-Excel -FilePath $FilePath -ExcelWorkSheetName 'This is my test2' -AutoFilter -AutoFit -Option Skip -FreezeTopRow #-OpenWorkBook

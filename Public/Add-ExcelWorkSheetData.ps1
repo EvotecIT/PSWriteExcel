@@ -8,6 +8,10 @@ function Add-ExcelWorksheetData {
         [int]$StartColumn = 1,
         [alias("Autosize")][switch] $AutoFit,
         [switch] $AutoFilter,
+        [Switch] $FreezeTopRow,
+        [Switch] $FreezeFirstColumn,
+        [Switch] $FreezeTopRowFirstColumn,
+        [int[]]$FreezePane,
         [alias('Name', 'WorksheetName')][string] $ExcelWorksheetName,
         [alias('Rotate', 'RotateData', 'TransposeColumnsRows', 'TransposeData')][switch] $Transpose,
         [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE',
@@ -17,7 +21,7 @@ function Add-ExcelWorksheetData {
         $FirstRun = $True
         $RowNr = if ($StartRow -ne $null -and $StartRow -ne 0) { $StartRow } else { 1 }
         $ColumnNr = if ($StartColumn -ne $null -and $StartColumn -ne 0 ) { $StartColumn } else { 1 }
-        if ($ExcelWorksheet) {
+        if ($ExcelWorksheet -ne $null) {
             Write-Verbose "Add-ExcelWorkSheetData - ExcelWorksheet given. Continuing..."
         } else {
             if ($ExcelDocument) {
@@ -77,6 +81,13 @@ function Add-ExcelWorksheetData {
     End {
         if ($AutoFit) { Set-ExcelWorksheetAutoFit -ExcelWorksheet $ExcelWorksheet }
         if ($AutoFilter) { Set-ExcelWorksheetAutoFilter -ExcelWorksheet $ExcelWorksheet -DataRange $ExcelWorksheet.Dimension -AutoFilter $AutoFilter }
+        if ($FreezeTopRow -or $FreezeFirstColumn -or $FreezeTopRowFirstColumn -or $FreezePane) {
+            Set-ExcelWorkSheetFreezePane -ExcelWorksheet $ExcelWorksheet `
+                -FreezeTopRow:$FreezeTopRow `
+                -FreezeFirstColumn:$FreezeFirstColumn `
+                -FreezeTopRowFirstColumn:$FreezeTopRowFirstColumn `
+                -FreezePane $FreezePane
+        }
         if ($Supress) { return } else { return $ExcelWorkSheet }
     }
 

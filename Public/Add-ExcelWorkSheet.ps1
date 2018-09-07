@@ -8,7 +8,7 @@ function Add-ExcelWorkSheet {
     )
     $WorksheetName = $WorksheetName.Trim()
     if ($WorksheetName.Length -eq 0) {
-        $WorksheetName = -join ((48..57) + (97..122) | Get-Random -Count 31 | % {[char]$_})
+        $WorksheetName = Get-RandomStringName -Size 31
         Write-Warning "Add-ExcelWorkSheet - Name is empty. Generated random name: $WorksheetName"
     } elseif ($WorksheetName.Length -gt 31) {
         $WorksheetName = $WorksheetName.Substring(0, 31)
@@ -21,13 +21,15 @@ function Add-ExcelWorkSheet {
             #Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName - skipping"
             Write-Warning "Add-ExcelWorkSheet - Worksheet $WorksheetName already exists. Skipping."
             Write-Warning "Add-ExcelWorkSheet - You can overwrite this setting with one of the Options: Replace, Skip, Rename"
-            return
+            $Data = $PreviousWorksheet
         } elseif ($Option -eq 'Replace') {
             Write-Verbose "Add-ExcelWorkSheet - WorksheetName: $WorksheetName - exists. Replacing..."
             Remove-ExcelWorksheet -ExcelDocument $ExcelDocument -ExcelWorksheet $PreviousWorksheet
             $Data = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -WorksheetName $WorksheetName -Option $Option -Supress $False
         } elseif ($Option -eq 'Rename') {
-            #Write-Verbose "Add-ExcelWorkSheet - Name: $WorksheetName - rename"
+            Write-Verbose "Add-ExcelWorkSheet - Worksheet: $WorksheetName already exists. Renaming."
+            $WorksheetName = Get-RandomStringName -Size 31
+            Write-Verbose "Add-ExcelWorkSheet - New worksheet name $WorksheetName"
         } else {
             #Write-Verbose "Future use..."
         }
