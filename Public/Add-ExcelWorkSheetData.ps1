@@ -15,6 +15,7 @@ function Add-ExcelWorksheetData {
         [alias('Name', 'WorksheetName')][string] $ExcelWorksheetName,
         [alias('Rotate', 'RotateData', 'TransposeColumnsRows', 'TransposeData')][switch] $Transpose,
         [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE',
+        [switch] $PreScanHeaders, # this feature scans properties of an object for all objects it contains to make sure all headers are there
         [bool] $Supress
     )
     Begin {
@@ -39,7 +40,7 @@ function Add-ExcelWorksheetData {
                 $FirstRun = $false
                 #Write-Verbose "Add-ExcelWorksheetData - FirstRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
                 if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
-                $Data = Format-PSTable $DataTable -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet # -SkipTitle:$NoHeader
+                $Data = Format-PSTable -Object $DataTable -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -PreScanHeaders:$PreScanHeaders # -SkipTitle:$NoHeader
                 $WorksheetHeaders = $Data[0] # Saving Header information for later use
                 #Write-Verbose "Add-ExcelWorksheetData - Headers: $($WorksheetHeaders -join ', ') - Data Count: $($Data.Count)"
                 if ($NoHeader) {
@@ -63,7 +64,7 @@ function Add-ExcelWorksheetData {
             } else {
                 #Write-Verbose "Add-ExcelWorksheetData - NextRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
                 if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
-                $Data = Format-PSTable $DataTable -SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $WorksheetHeaders
+                $Data = Format-PSTable $DataTable -SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $WorksheetHeaders -PreScanHeaders:$PreScanHeaders
                 $ArrRowNr = 0
                 foreach ($RowData in $Data) {
                     $ArrColumnNr = 0
