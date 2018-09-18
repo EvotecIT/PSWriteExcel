@@ -118,6 +118,7 @@ $Array | Format-Table -AutoSize
 #>
 
 Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosize (via pipeline)' {
+    Import-Module PSSharedGoods
     It 'Given (MyItems0) should have 3 columns, 4 rows, 3rd row 3rd column should be Food lover' {
         $Type = Get-ObjectType -Object $myitems0
         $Type.ObjectTypeName | Should -Be 'Object[]'
@@ -479,6 +480,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 }
 
 Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosize (without pipeline)' {
+    Import-Module PSSharedGoods
     It 'Given (MyItems0) should have 3 columns, 4 rows, 3rd row 3rd column should be Food lover' {
 
         $Type = Get-ObjectType -Object $myitems0
