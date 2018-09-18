@@ -1,5 +1,5 @@
 
-Import-Module PSWriteExcel -Force
+Import-Module PSWriteExcel -Force -Verbose
 
 $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-Test.xlsx"
 

@@ -12,7 +12,7 @@
     RootModule           = 'PSWriteExcel.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '0.0.6'
+    ModuleVersion        = '0.0.7'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Desktop', 'Core')
@@ -66,32 +66,19 @@
     # FormatsToProcess = @()
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-    # NestedModules = @()
+    NestedModules        = @('PSSharedGoods')
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     #FunctionsToExport    = '*'
     FunctionsToExport    = @('Add-ExcelWorkSheet' , 'Add-ExcelWorkSheetCell' , 'Add-ExcelWorksheetData' , 'ConvertTo-Excel' , 'Get-ExcelDocument' , 'Get-ExcelWorkSheet' , 'New-ExcelDocument' , 'Remove-ExcelWorksheet' , 'Save-ExcelDocument' , 'Set-ExcelTranslateFromR1C1' , 'Set-ExcelWorksheetAutoFilter' , 'Set-ExcelWorksheetAutoFit' , 'Set-ExcelWorkSheetFreezePane')
 
-
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData          = @{
-
         PSData = @{
-
             # Tags applied to this module. These help with module discovery in online galleries.
             Tags       = @('Excel', 'ConvertTo-Excel', 'ExportExcel')
-
-            # A URL to the license for this module.
-            # LicenseUri = ''
-
             # A URL to the main website for this project.
             ProjectUri = 'https://github.com/EvotecIT/PSWriteExcel'
-
-            # A URL to an icon representing this module.
-            # IconUri = ''
-
-            # ReleaseNotes of this module
-            # ReleaseNotes = ''
 
         } # End of PSData hashtable
 
