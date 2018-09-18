@@ -1,4 +1,5 @@
 ﻿#Requires -Modules Pester
+Import-Module PSSharedGoods -Force
 Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force
 
 ### Preparing Data Start
