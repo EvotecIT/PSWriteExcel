@@ -12,7 +12,7 @@
     RootModule           = 'PSWriteExcel.psm1'
 
     # Version number of this module.
-    ModuleVersion        = '0.0.8'
+    ModuleVersion        = '0.0.9'
 
     # Supported PSEditions
     CompatiblePSEditions = @('Desktop', 'Core')
@@ -75,6 +75,7 @@
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData          = @{
         PSData = @{
+            Prerelease = ''
             # Tags applied to this module. These help with module discovery in online galleries.
             Tags       = @('Excel', 'ConvertTo-Excel', 'ExportExcel')
             # A URL to the main website for this project.

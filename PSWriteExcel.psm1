@@ -2,25 +2,26 @@
 $Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
 $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
 #if ($PSEdition -eq 'Core') {
-#   $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\*.NetCORE.dll -ErrorAction SilentlyContinue )
+#$Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\*.NetCORE.dll -ErrorAction SilentlyContinue )
 #} else {
-$Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\*.NET40.dll -ErrorAction SilentlyContinue )
+$Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\*.Net40.dll -ErrorAction SilentlyContinue )
+#$Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\EPPlus.dll -ErrorAction SilentlyContinue )
 #}
 
 #Dot source the files
-Foreach ($import in @($Public + $Private)) {
+Foreach ($Import in @($Public + $Private)) {
     Try {
-        . $import.fullname
+        . $Import.Fullname
     } Catch {
-        Write-Error -Message "Failed to import function $($import.fullname): $_"
+        Write-Error -Message "Failed to import function $($import.Fullname): $_"
     }
 }
-Foreach ($import in @($Assembly)) {
+Foreach ($Import in @($Assembly)) {
     Try {
-        #Write-Warning "Importing assembly name $($Import.Fullname)"
-        Add-Type -Path $import.fullname
+        Write-Warning "Importing assembly name $($Import.Fullname)"
+        Add-Type -Path $Import.Fullname
     } Catch {
-        Write-Error -Message "Failed to import DLL $($import.fullname): $_"
+        Write-Error -Message "Failed to import DLL $($Import.Fullname): $_"
     }
 }
 
