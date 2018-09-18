@@ -24,7 +24,7 @@ Foreach ($import in @($Assembly)) {
     }
 }
 
-Export-ModuleMember -Function 'Add-ExcelWorkSheet' , 'Add-ExcelWorkSheetCell' , 'Add-ExcelWorksheetData' , 'ConvertTo-Excel' , 'Get-ExcelDocument' , 'Get-ExcelWorkSheet' , 'New-ExcelDocument' , 'Remove-ExcelWorksheet' , 'Save-ExcelDocument' , 'Set-ExcelTranslateFromR1C1' , 'Set-ExcelWorksheetAutoFilter' , 'Set-ExcelWorksheetAutoFit' , 'Set-ExcelWorkSheetFreezePane'
+Export-ModuleMember -Function 'Get-ObjectType', 'Add-ExcelWorkSheet' , 'Add-ExcelWorkSheetCell' , 'Add-ExcelWorksheetData' , 'ConvertTo-Excel' , 'Get-ExcelDocument' , 'Get-ExcelWorkSheet' , 'New-ExcelDocument' , 'Remove-ExcelWorksheet' , 'Save-ExcelDocument' , 'Set-ExcelTranslateFromR1C1' , 'Set-ExcelWorksheetAutoFilter' , 'Set-ExcelWorksheetAutoFit' , 'Set-ExcelWorkSheetFreezePane'
 
 [string] $ManifestFile = '{0}.psd1' -f (Get-Item $PSCommandPath).BaseName;
 $ManifestPathAndFile = Join-Path -Path $PSScriptRoot -ChildPath $ManifestFile;
