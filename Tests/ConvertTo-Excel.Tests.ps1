@@ -294,7 +294,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
     }
 
-    It 'Given (Object2) should have 10 columns, Have more then 4 rows, data is in random order (unfortunately)' {
+    It 'Given (Object2) should have 10 or more columns, Have 2 or more rows, data is in random order (unfortunately)' {
 
         $Type = Get-ObjectType -Object $Object2
         $Type.ObjectTypeName | Should -Be 'Object[]'
@@ -305,8 +305,8 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         $Path = "$Env:TEMP\8.xlsx"
         $Object2 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Verbose
         $pkg = Get-ExcelDocument -Path $Path
-        $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 4
-        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
+        $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterOrEqual 2
+        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -BeGreaterOrEqual 10
         # Not sure yet how to predict thje order. Seems order of FT -a is differnt then FL and script takes FL for now
         #$pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'ProcessName'
         #$pkg.Workbook.Worksheets[1].Cells['B1'].Value | Should -Be 'Handle'
@@ -314,7 +314,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         $pkg.Dispose()
     }
 
-    It 'Given (Object3) should have 10 columns, Have more then 1 rows, data should be in proper columns' {
+    It 'Given (Object3) should have 10 or more columns, Have more then 1 rows, data should be in proper columns' {
 
         $Type = Get-ObjectType -Object $Object3
         $Type.ObjectTypeName | Should -Be 'Object[]'
@@ -326,14 +326,14 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         $Object3 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 1
-        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
+        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -BeGreaterOrEqual 10
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Used'
         $pkg.Workbook.Worksheets[1].Cells['B1'].Value | Should -Be 'Free'
         $pkg.Workbook.Worksheets[1].Cells['C1'].Value | Should -Be 'CurrentLocation'
         $pkg.Dispose()
     }
 
-    It 'Given (Object4) should have 10 columns, Have more then 1 rows, data should be in proper columns' {
+    It 'Given (Object4) should have 10 or more columns, Have more then 1 rows, data should be in proper columns' {
 
         $Type = Get-ObjectType -Object $Object4
         $Type.ObjectTypeName | Should -Be 'PSCustomObject'
@@ -345,7 +345,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         $Object4 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 1
-        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
+        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -BeGreaterOrEqual 10
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Used'
         $pkg.Workbook.Worksheets[1].Cells['B1'].Value | Should -Be 'Free'
         $pkg.Workbook.Worksheets[1].Cells['C1'].Value | Should -Be 'CurrentLocation'
@@ -661,7 +661,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
     }
 
-    It 'Given (Object2) should have 10 columns, Have more then 4 rows, data is in random order (unfortunately)' {
+    It 'Given (Object2) should have 10 or more columns, Have more 2 or more rows, data is in random order (unfortunately)' {
 
         $Type = Get-ObjectType -Object $Object2
         $Type.ObjectTypeName | Should -Be 'Object[]'
@@ -672,8 +672,8 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         $Path = "$Env:TEMP\8.xlsx"
         ConvertTo-Excel -Path $Path -DataTable $Object2 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
-        $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 4
-        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
+        $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterOrEqual 2
+        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -BeGreaterOrEqual 10
         # Not sure yet how to predict thje order. Seems order of FT -a is differnt then FL and script takes FL for now
         #$pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'ProcessName'
         #$pkg.Workbook.Worksheets[1].Cells['B1'].Value | Should -Be 'Handle'
@@ -681,7 +681,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         $pkg.Dispose()
     }
 
-    It 'Given (Object3) should have 10 columns, Have more then 1 rows, data should be in proper columns' {
+    It 'Given (Object3) should have 10 or more columns, Have more then 1 rows, data should be in proper columns' {
 
         $Type = Get-ObjectType -Object $Object3
         $Type.ObjectTypeName | Should -Be 'Object[]'
@@ -693,14 +693,14 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         ConvertTo-Excel -Path $Path -DataTable $Object3 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 1
-        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
+        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -BeGreaterOrEqual 10
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Used'
         $pkg.Workbook.Worksheets[1].Cells['B1'].Value | Should -Be 'Free'
         $pkg.Workbook.Worksheets[1].Cells['C1'].Value | Should -Be 'CurrentLocation'
         $pkg.Dispose()
     }
 
-    It 'Given (Object4) should have 10 columns, Have more then 1 rows, data should be in proper columns' {
+    It 'Given (Object4) should have 10 or more columns, Have more then 1 rows, data should be in proper columns' {
 
         $Type = Get-ObjectType -Object $Object4
         $Type.ObjectTypeName | Should -Be 'PSCustomObject'
@@ -712,7 +712,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         ConvertTo-Excel -Path $Path -DataTable $Object4 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[1].Dimension.Rows | Should -BeGreaterThan 1
-        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -Be 10
+        $pkg.Workbook.Worksheets[1].Dimension.Columns | Should -BeGreaterOrEqual 10
         $pkg.Workbook.Worksheets[1].Cells['A1'].Value | Should -Be 'Used'
         $pkg.Workbook.Worksheets[1].Cells['B1'].Value | Should -Be 'Free'
         $pkg.Workbook.Worksheets[1].Cells['C1'].Value | Should -Be 'CurrentLocation'
