@@ -18,7 +18,7 @@ Foreach ($Import in @($Public + $Private)) {
 }
 Foreach ($Import in @($Assembly)) {
     Try {
-        Write-Warning "Importing assembly name $($Import.Fullname)"
+        #Write-Warning "Importing assembly name $($Import.Fullname)"
         Add-Type -Path $Import.Fullname
     } Catch {
         Write-Error -Message "Failed to import DLL $($Import.Fullname): $_"
