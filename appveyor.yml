@@ -1,0 +1,5 @@
+build: off
+
+test_script:
+  - ps:   .\PSWriteExcel.Tests.ps1
+  - pwsh: .\PSWriteExcel.Tests.ps1
