@@ -28,7 +28,6 @@ function ConvertTo-Excel {
             Write-Verbose "ConvertTo-Excel - Excel is null, creating new Excel"
             $Excel = New-ExcelDocument #-Verbose
         }
-        #$ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName $ExcelWorkSheetName -Supress $False -Option $Option #-Verbose
     }
     Process {
         $Data += $DataTable
@@ -45,7 +44,8 @@ function ConvertTo-Excel {
             -FreezeTopRowFirstColumn:$FreezeTopRowFirstColumn `
             -FreezePane $FreezePane `
             -Transpose:$Transpose `
-            -TransposeSort $TransposeSort
+            -TransposeSort $TransposeSort `
+            -Option $Option
         Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook:$OpenWorkBook
     }
 }

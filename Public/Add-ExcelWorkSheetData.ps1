@@ -4,6 +4,7 @@ function Add-ExcelWorksheetData {
         [alias('ExcelWorkbook')][OfficeOpenXml.ExcelPackage] $ExcelDocument,
         $ExcelWorksheet, # [OfficeOpenXml.ExcelWorksheet]
         [Parameter(ValueFromPipeline = $true)][Object] $DataTable,
+        [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
         [int]$StartRow = 1,
         [int]$StartColumn = 1,
         [alias("Autosize")][switch] $AutoFit,
@@ -26,7 +27,7 @@ function Add-ExcelWorksheetData {
             Write-Verbose "Add-ExcelWorkSheetData - ExcelWorksheet given. Continuing..."
         } else {
             if ($ExcelDocument) {
-                $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -Name $ExcelWorksheetName
+                $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -Name $ExcelWorksheetName -Option $Option
             } else {
                 Write-Warning 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. No data will be added...'
                 # throw 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. Terminating.'
