@@ -5,7 +5,7 @@ $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-Test1.xlsx"
 $myitems0 = @(
     [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover"},
     [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover"},
-    [pscustomobject]@{name = "Jason another one"; age = 42; info = "Food lover"
+    [pscustomobject]@{name = "Jason another one"; age = 42; info = "Food lover - Very long line I need to test that works"
     }
 )
 
