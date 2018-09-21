@@ -3,7 +3,7 @@
 [![Build status APPVEYOR](https://ci.appveyor.com/api/projects/status/n3ds0y45vc2dv6r2?svg=true)](https://ci.appveyor.com/project/PrzemyslawKlys/pswriteexcel)
 [![Build status Azure](https://evotecpl.visualstudio.com/PSWriteExcel/_apis/build/status/EvotecIT.PSWriteExcel)](https://evotecpl.visualstudio.com/PSWriteExcel/_apis/build/status/EvotecIT.PSWriteExcel?branchName=master)
 
-[PSWriteExcel](https://evotec.xyz/hub/scripts/pswriteexcel-powershell-module/) is very basic (at the moment) PowerShell module to create Microsoft Excel workbooks without Microsoft Excel installed. It's main purpose is to support/create [Excel for PSWinDocumentation](https://evotec.xyz/hub/scripts/pswindocumentation-powershell-module/) project. Depending on requirements of this project (and maybe few others) it may evolve or cover more feature sets. After some basic testing it seems to work fine on both Windows and Linux (Ubuntu).
+[PSWriteExcel](https://evotec.xyz/hub/scripts/pswriteexcel-powershell-module/) is very basic (at the moment) PowerShell module to create Microsoft Excel workbooks without Microsoft Excel installed. It's main purpose is to support/create [Excel for PSWinDocumentation](https://evotec.xyz/hub/scripts/pswindocumentation-powershell-module/) project. Depending on requirements of this project (and maybe few others) it may evolve or cover more feature sets. After some basic testing it seems to work fine on **Windows** and **Linux** and **MacOS**.
 
 More information can be found on dedicated page for [PSWriteExcel](https://evotec.xyz/hub/scripts/pswriteexcel-powershell-module/) module.
 
@@ -36,7 +36,7 @@ pwsh
 For anything else refer to great Microsoft Article - [Installing PowerShell Core on Linux](https://docs.microsoft.com/en-US/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
 
 
-## Installing on Windows / Linux (most likely Mac too)
+## Installing on Windows / Linux / MacOS
 
 ```powershell
 Install-Module PSWriteExcel -Scope CurrentUser
