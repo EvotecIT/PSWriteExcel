@@ -92,5 +92,5 @@ $InvoiceDataOrdered2 += $InvoiceEntry7
 $InvoiceDataOrdered2 += $InvoiceEntry8
 
 $Path = "$Env:TEMP\17.xlsx"
-$myitems0 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName' -OpenWorkBook
-$InvoiceEntry1 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName1' -OpenWorkBook
+$myitems0 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName' #-OpenWorkBook
+$InvoiceEntry1 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName1' -OpenWorkBook -Verbose
