@@ -32,6 +32,7 @@ jobs:
     - script: |
         brew update
         brew tap caskroom/cask
+        brew install mono-libgdiplus
         brew cask install powershell
       displayName: 'Install PowerShell Core'
 
