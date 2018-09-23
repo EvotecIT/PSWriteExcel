@@ -22,7 +22,7 @@ function Save-ExcelDocument {
             $ExcelDocument.File = $FilePath
             Save-ExcelDocument -ExcelDocument $ExcelDocument -FilePath $FilePath -OpenWorkBook:$OpenWorkBook
         } else {
-            Write-Warning $ErrorMessage
+            Write-Warning "Save-ExcelDocument - Error: $ErrorMessage"
         }
     }
 
