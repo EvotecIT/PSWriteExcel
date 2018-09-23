@@ -4,6 +4,10 @@ function Save-ExcelDocument {
         [string] $FilePath,
         [alias('Show', 'Open')][switch] $OpenWorkBook
     )
+    if ($ExcelDocument.Workbook.Worksheets.Count -eq 0) {
+        Write-Warning "Save-ExcelDocument - Saving workbook $FilePath was terminated. No worksheets/data exists."
+        return
+    }
     if ($Script:SaveCounter -gt 5) {
         Write-Warning "Save-ExcelDocument - Couldnt save Excel. Terminating.."
         return
