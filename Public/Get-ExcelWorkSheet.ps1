@@ -3,8 +3,17 @@ function Get-ExcelWorkSheet {
     [cmdletBinding()]
     param (
         [OfficeOpenXml.ExcelPackage]  $ExcelDocument,
-        [string] $Name
+        [string] $Name,
+        [switch] $All
     )
-    $Data = $ExcelDocument.Workbook.Worksheets | Where { $_.Name -eq $Name }
-    return $Data
+    if ($ExcelDocument) {
+        if ($All) {
+            $Data = $ExcelDocument.Workbook.Worksheets
+        } else {
+            $Data = $ExcelDocument.Workbook.Worksheets | Where { $_.Name -eq $Name }
+        }
+        return $Data
+    } else {
+        return
+    }
 }
