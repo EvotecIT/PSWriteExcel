@@ -1,8 +1,8 @@
 function ConvertFrom-Excel {
     [CmdletBinding()]
     param(
-        [string] $FilePath,
-        [string] $ExcelWorksheetName
+        [alias('Excel', 'Path')][string] $FilePath,
+        [alias('WorksheetName', 'Name')][string] $ExcelWorksheetName
     )
     if (Test-Path $FilePath) {
         $ExcelDocument = Get-ExcelDocument -Path $FilePath

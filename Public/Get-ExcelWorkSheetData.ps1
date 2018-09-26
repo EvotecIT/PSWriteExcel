@@ -20,7 +20,7 @@ function Get-ExcelWorkSheetData {
     }
     Write-Verbose "Get-ExcelWorkSheetData - Headers: $($Headers -join ',')"
 
-    for ($CellRow = 2; $CellRow -lt $Dimensions.Rows; $CellRow++) {
+    for ($CellRow = 2; $CellRow -lt $Dimensions.Rows + 1; $CellRow++) {
 
         $ExcelData = [PsCustomObject] @{  }
         for ($CellColumn = 1; $CellColumn -lt $Dimensions.Columns + 1; $CellColumn++) {
