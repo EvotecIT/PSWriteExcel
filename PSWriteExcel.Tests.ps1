@@ -6,7 +6,7 @@ $ModuleVersion = (Get-Content -Raw $PSScriptRoot\*.psd1)  | Invoke-Expression | 
 #$Dest = "Builds\$ModuleName-{0}-{1}.zip" -f $ModuleVersion, (Get-Date).ToString("yyyyMMddHHmmss")
 #Compress-Archive -Path . -DestinationPath .\$dest
 
-$Pester = (Get-Module -ListAvailable pester)
+$Pester = (Get-Module -ListAvailable pester)[0]
 if ($Pester -eq $null -or ($Pester.Version.Major -le 4 -and $Pester.Version.Minor -lt 4)) {
     Write-Warning "$ModuleName - Downloading Pester from PSGallery"
     Install-Module -Name Pester -Repository PSGallery -Force -SkipPublisherCheck -Scope CurrentUser
@@ -16,7 +16,7 @@ if ((Get-Module -ListAvailable PSSharedGoods) -eq $null) {
     Install-Module -Name PSSharedGoods -Repository PSGallery -Force -Scope CurrentUser
 }
 
-$result = Invoke-Pester -Script $PSScriptRoot\Tests -Verbose -PassThru
+$result = Invoke-Pester -Script $PSScriptRoot\Tests -PassThru
 
 if ($result.FailedCount -gt 0) {
     throw "$($result.FailedCount) tests failed."

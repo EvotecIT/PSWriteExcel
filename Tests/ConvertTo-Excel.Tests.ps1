@@ -1,5 +1,5 @@
 ﻿#Requires -Modules Pester
-Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force -Verbose
+Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force #-Verbose
 
 ### Preparing Data Start
 $myitems0 = @(
