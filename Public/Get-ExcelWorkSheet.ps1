@@ -4,7 +4,7 @@ function Get-ExcelWorkSheet {
     param (
         [OfficeOpenXml.ExcelPackage]  $ExcelDocument,
         [string] $Name,
-        [int] $Index,
+        [nullable[int]] $Index,
         [switch] $All
     )
     if ($ExcelDocument) {
@@ -14,14 +14,15 @@ function Get-ExcelWorkSheet {
         }
         if ($All) {
             $Data = $ExcelDocument.Workbook.Worksheets
-        } elseif ($Name -or $Index) {
+        } elseif ($Name -or $Index -ne $null) {
             if ($Name) {
                 $Data = $ExcelDocument.Workbook.Worksheets | Where { $_.Name -eq $Name }
             }
-            if ($Index) {
+            if ($Index -ne $null) {
                 if ($PSEdition -ne 'Core') {
                     $Index = $Index + 1
                 }
+                Write-Verbose "Get-ExcelWorkSheet - Index: $Index"
                 $Data = $ExcelDocument.Workbook.Worksheets[$Index]
             }
         }
