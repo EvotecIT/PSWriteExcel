@@ -1,0 +1,40 @@
+#Requires -Modules Pester
+Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force #-Verbose
+
+$myitems0 = @(
+    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover"},
+    [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover"},
+    [pscustomobject]@{name = "Jason another one"; age = 42; info = "Food lover"
+    }
+)
+
+
+if ($PSEdition -eq 'Core') {
+    $WorkSheet = 0 # Core version has 0 based index for $Worksheets
+} else {
+    $WorkSheet = 1
+}
+
+Describe 'Set-ExcelProperties - Setting Excel Properties' {
+    It 'Using Set-ExcelProperties - Setting Author, Title and Subject Properties should work' {
+        $Excel = New-ExcelDocument -Verbose
+        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+        Set-ExcelProperties -ExcelDocument $Excel -Author 'Przemyslaw Klys' -Title 'PSWriteExcel Set-Properties' -Subject 'PSWriteExcel'
+
+        $Excel.Workbook.Properties.Author | Should -Be 'Przemyslaw Klys'
+        $Excel.Workbook.Properties.Title | Should -Be 'PSWriteExcel Set-Properties'
+        $Excel.Workbook.Properties.Subject | Should -Be 'PSWriteExcel'
+    }
+    It 'Using Set-ExcelProperties - Setting Created, Modified and Category properties should work' {
+        [DateTime] $Created = Get-Date -Year '2011' -Month '07' -Day '04' -Hour 0 -Minute 0 -Second 0 -Millisecond 0
+        [DateTime] $Modified = Get-Date -Year '2018' -Month '09' -Day '27' -Hour 0 -Minute 0 -Second 0 -Millisecond 0
+
+        $Excel = New-ExcelDocument -Verbose
+        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+        Set-ExcelProperties -ExcelDocument $Excel -Created $Created -Modified $Modified -Category 'Excel'
+
+        $Excel.Workbook.Properties.Created | Should -Be $Created
+        $Excel.Workbook.Properties.Modified | Should -Be $Modified
+        $Excel.Workbook.Properties.Category | Should -Be 'Excel'
+    }
+}
