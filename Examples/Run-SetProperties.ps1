@@ -1,4 +1,4 @@
-Import-Module PSWriteExcel -Force #-Verbose
+Import-Module PSWriteExcel -Force
 
 $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-SetProperties.xlsx"
 
@@ -19,4 +19,4 @@ Set-ExcelProperties -ExcelDocument $Excel -Comments 'Testing PSWriteExcel' -Subj
 
 Get-ExcelProperties -ExcelDocument $Excel
 
-Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath #-OpenWorkBook
+Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook
