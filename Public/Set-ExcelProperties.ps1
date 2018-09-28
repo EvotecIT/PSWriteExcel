@@ -21,10 +21,9 @@ function Set-ExcelProperties {
         [nullable[bool]] $LinksUpToDate,
         [nullable[bool]] $HyperlinksChanged,
         [nullable[bool]] $ScaleCrop,
-        [nullable[bool]] $SharedDoc,
-        [hashtable] $CustomProperty,
-        [hashtable] $ExtendedProperty
-
+        [nullable[bool]] $SharedDoc
+        #[hashtable] $CustomProperty,
+        #[hashtable] $ExtendedProperty
     )
     if ($Title) {
         $ExcelDocument.Workbook.Properties.Title = $Title
@@ -90,10 +89,10 @@ function Set-ExcelProperties {
     if ($SharedDoc -ne $null) {
         $ExcelDocument.Workbook.Properties.SharedDoc = $SharedDoc
     }
-    foreach ($Key in $Custom.Keys) {
-        $ExcelDocument.Workbook.Properties.SetCustomPropertyValue($Key, $Custom.$Key)
-    }
-    foreach ($Key in $ExtendedProperty.Keys) {
-        $ExcelDocument.Workbook.Properties.SetExtendedPropertyValue($Key, $ExtendedProperty.$Key)
-    }
+    #foreach ($Key in $Custom.Keys) {
+    #    $ExcelDocument.Workbook.Properties.SetCustomPropertyValue($Key, $Custom.$Key)
+    #}
+    #foreach ($Key in $ExtendedProperty.Keys) {
+    #    $ExcelDocument.Workbook.Properties.SetExtendedPropertyValue($Key, $ExtendedProperty.$Key)
+    #}
 }

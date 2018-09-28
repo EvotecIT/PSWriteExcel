@@ -1,4 +1,4 @@
-Import-Module PSWriteExcel -Force -Verbose
+Import-Module PSWriteExcel -Force #-Verbose
 
 $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-SetProperties.xlsx"
 
@@ -15,9 +15,8 @@ $myitems0 = @(
 Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
 
 Set-ExcelProperties -ExcelDocument $Excel -Author 'Przemyslaw Klys' -Title 'This is a test'
-Set-ExcelProperties -ExcelDocument $Excel -Comments 'Przemyslaw Klys' -Subject 'Subject'
-Set-ExcelProperties -ExcelDocument $Excel -CustomProperty @{ 'Special Field' = 'Test' }
+Set-ExcelProperties -ExcelDocument $Excel -Comments 'Testing PSWriteExcel' -Subject 'Subject'
 
-$Excel.Workbook.Properties
+Get-ExcelProperties -ExcelDocument $Excel
 
-Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook
+Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath #-OpenWorkBook

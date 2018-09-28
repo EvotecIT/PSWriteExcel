@@ -37,4 +37,23 @@ Describe 'Set-ExcelProperties - Setting Excel Properties' {
         $Excel.Workbook.Properties.Modified | Should -Be $Modified
         $Excel.Workbook.Properties.Category | Should -Be 'Excel'
     }
+    It 'Using Set-ExcelProperties - Setting remaining properties should work' {
+        [DateTime] $Created = Get-Date -Year '2011' -Month '07' -Day '04' -Hour 0 -Minute 0 -Second 0 -Millisecond 0
+        [DateTime] $Modified = Get-Date -Year '2018' -Month '09' -Day '27' -Hour 0 -Minute 0 -Second 0 -Millisecond 0
+
+        $Excel = New-ExcelDocument -Verbose
+        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+        Set-ExcelProperties -ExcelDocument $Excel -Application 'Test 1' -AppVersion 'Test 2' -Keywords 'My key word' -LastModifiedBy 'Przemyslaw Klys' -LastPrinted 'Evotec' -LinksUpToDate $false -Manager 'Przemyslaw Klys' -ScaleCrop $true -SharedDoc $false -Status 'My status'
+
+        $Excel.Workbook.Properties.Application | Should -Be 'Test 1'
+        $Excel.Workbook.Properties.AppVersion | Should -Be 'Test 2'
+        $Excel.Workbook.Properties.Keywords | Should -Be 'My key word'
+        $Excel.Workbook.Properties.LastModifiedBy | Should -Be 'Przemyslaw Klys'
+        $Excel.Workbook.Properties.LastPrinted | Should -Be 'Evotec'
+        $Excel.Workbook.Properties.LinksUpToDate | Should -Be $false
+        $Excel.Workbook.Properties.Manager | Should -Be 'Przemyslaw Klys'
+        $Excel.Workbook.Properties.ScaleCrop | Should -Be $true
+        $Excel.Workbook.Properties.SharedDoc | Should -Be $false
+        $Excel.Workbook.Properties.Status | Should -Be 'My status'
+    }
 }
