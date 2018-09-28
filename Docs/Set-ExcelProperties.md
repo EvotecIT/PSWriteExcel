@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-ExcelProperties
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Following function allows setting properties for Excel Workbook. It works with standard Excel Properties.
 
 ## SYNTAX
 
@@ -22,7 +22,7 @@ Set-ExcelProperties [[-ExcelDocument] <ExcelPackage>] [[-Title] <String>] [[-Sub
 ```
 
 ## DESCRIPTION
-Following command allows setting properties for Excel Workbook
+Following function allows setting properties for Excel Workbook. It works with standard Excel Properties.
 
 ## EXAMPLES
 

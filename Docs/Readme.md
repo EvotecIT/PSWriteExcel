@@ -45,7 +45,7 @@ Locale: {{ Update Locale }}
 {{Fill in the Synopsis}}
 
 ### [Set-ExcelProperties](Set-ExcelProperties.md)
-{{Fill in the Synopsis}}
+Following function allows setting properties for Excel Workbook. It works with standard Excel Properties.
 
 ### [Set-ExcelTranslateFromR1C1](Set-ExcelTranslateFromR1C1.md)
 {{Fill in the Synopsis}}
