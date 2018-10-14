@@ -14,6 +14,8 @@ if ($PSEdition -eq 'Core') {
     $WorkSheet = 1
 }
 
+$TemporaryFolder = [IO.Path]::GetTempPath()
+
 Describe 'Get-ExcelProperties - Getting Excel Properties' {
     It 'Using Get-ExcelProperties - Getting Author, Title and Subject Properties should be readable' {
         $Excel = New-ExcelDocument
@@ -65,7 +67,7 @@ Describe 'Get-ExcelProperties - Getting Excel Properties' {
         [DateTime] $Created = Get-Date -Year '2011' -Month '07' -Day '04' -Hour 0 -Minute 0 -Second 0 -Millisecond 0
         [DateTime] $Modified = Get-Date -Year '2018' -Month '09' -Day '27' -Hour 0 -Minute 0 -Second 0 -Millisecond 0
 
-        $FilePath = [IO.Path]::Combine($Env:TEMP, "Get-ExpelProperties-Test.xlsx")
+        $FilePath = [IO.Path]::Combine($TemporaryFolder, "Get-ExpelProperties-Test.xlsx")
 
         $Excel = New-ExcelDocument
         $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Supress $False -Option 'Replace'

@@ -122,6 +122,8 @@ if ($PSEdition -eq 'Core') {
     $WorkSheet = 1
 }
 
+$TemporaryFolder = [IO.Path]::GetTempPath()
+
 Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosize (via pipeline)' {
     It 'Given (MyItems0) should have 3 columns, 4 rows, 3rd row 3rd column should be Food lover' {
         #$Type = Get-ObjectType -Object $myitems0
@@ -130,7 +132,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\17.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "17.xlsx")
         $myitems0 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$WorkSheet].Dimension.Rows | Should -Be 4
@@ -149,7 +151,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\18.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "18.xlsx")
         $myitems1 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -167,7 +169,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\1.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "1.xlsx")
         $myitems1 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -187,7 +189,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be ''
         #$Type.ObjectTypeInsiderBaseName | Should -Be ''
 
-        $Path = "$Env:TEMP\2.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "2.xlsx")
         $InvoiceEntry1 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 3
@@ -207,7 +209,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Hashtable'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\3.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "3.xlsx")
         $InvoiceData1 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 11
@@ -227,7 +229,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\4.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "4.xlsx")
         $InvoiceData2 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-NoNumberConversion 'Amount'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 6
@@ -247,7 +249,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Hashtable'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\5.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "5.xlsx")
         $InvoiceData3 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 3
@@ -267,7 +269,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\6.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "6.xlsx")
         $InvoiceData4 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-NoNumberConversion 'Amount'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -287,7 +289,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\7.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "7.xlsx")
         $Object1 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 6
@@ -308,7 +310,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSDriveInfo'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\8.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "8.xlsx")
         $Object2 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Verbose
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -BeGreaterOrEqual 2
@@ -328,7 +330,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\9.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "9.xlsx")
         $Object3 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -BeGreaterThan 1
@@ -347,7 +349,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\10.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "10.xlsx")
         $Object4 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -BeGreaterThan 1
@@ -366,7 +368,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Object'
         #$Type.ObjectTypeInsiderBaseName | Should -Be $null
 
-        $Path = "$Env:TEMP\11.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "11.xlsx")
         $obj | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -387,7 +389,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Object'
         #$Type.ObjectTypeInsiderBaseName | Should -Be $null
 
-        $Path = "$Env:TEMP\12.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "12.xlsx")
         $myArray1 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 4
@@ -409,7 +411,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Object'
         #$Type.ObjectTypeInsiderBaseName | Should -Be $null
 
-        $Path = "$Env:TEMP\13.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "13.xlsx")
         $myArray2 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -431,7 +433,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
 
-        $Path = "$Env:TEMP\14.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "14.xlsx")
         $InvoiceEntry7 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 3
@@ -449,7 +451,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'OrderedDictionary'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\15.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "15.xlsx")
         $InvoiceDataOrdered1 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 3
@@ -466,7 +468,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'OrderedDictionary'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\16.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "16.xlsx")
         $InvoiceDataOrdered2 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Show
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 5
@@ -492,7 +494,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\17.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "17.xlsx")
         ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -DataTable $myitems0 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 4
@@ -512,7 +514,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\18.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "18.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $myitems1 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -530,7 +532,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\1.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "1.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $MyItems2 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -550,7 +552,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be ''
         #$Type.ObjectTypeInsiderBaseName | Should -Be ''
 
-        $Path = "$Env:TEMP\2.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "2.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $InvoiceEntry1 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 3
@@ -570,7 +572,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Hashtable'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\3.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "3.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $InvoiceData1 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 11
@@ -591,7 +593,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\4.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "4.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $InvoiceData2 -ExcelWorkSheetName 'MyRandomName1' #-NoNumberConversion 'Amount'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 6
@@ -612,7 +614,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Hashtable'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\5.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "5.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $InvoiceData3 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 3
@@ -633,7 +635,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\6.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "6.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $InvoiceData4 -ExcelWorkSheetName 'MyRandomName1' #-NoNumberConversion 'Amount'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -654,7 +656,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\7.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "7.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $Object1 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 6
@@ -675,7 +677,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSDriveInfo'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\8.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "8.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $Object2 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -BeGreaterOrEqual 2
@@ -695,7 +697,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\9.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "9.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $Object3 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -BeGreaterThan 1
@@ -714,7 +716,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'PSCustomObject'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\10.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "10.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $Object4 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -BeGreaterThan 1
@@ -733,7 +735,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Object'
         #$Type.ObjectTypeInsiderBaseName | Should -Be $null
 
-        $Path = "$Env:TEMP\11.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "11.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $obj -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -754,7 +756,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Object'
         #$Type.ObjectTypeInsiderBaseName | Should -Be $null
 
-        $Path = "$Env:TEMP\12.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "12.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $myArray1 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 4
@@ -776,7 +778,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'Object'
         #$Type.ObjectTypeInsiderBaseName | Should -Be $null
 
-        $Path = "$Env:TEMP\13.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "13.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $myArray2 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -798,7 +800,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
 
-        $Path = "$Env:TEMP\14.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "14.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $InvoiceEntry7 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 3
@@ -816,7 +818,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'OrderedDictionary'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\15.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "15.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $InvoiceDataOrdered1 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 3
@@ -833,7 +835,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         #$Type.ObjectTypeInsiderName | Should -Be 'OrderedDictionary'
         #$Type.ObjectTypeInsiderBaseName | Should -Be 'System.Object'
 
-        $Path = "$Env:TEMP\16.xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "16.xlsx")
         ConvertTo-Excel -Path $Path -DataTable $InvoiceDataOrdered2 -ExcelWorkSheetName 'MyRandomName1'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 5
@@ -846,7 +848,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
 
     ## Cleanup of tests
     for ($i = 1; $i -le 40; $i++) {
-        $Path = "$Env:TEMP\$($i).xlsx"
+        $Path = [IO.Path]::Combine($TemporaryFolder, "$($i).xlsx")
         Remove-Item $Path -Confirm:$False -ErrorAction SilentlyContinue
     }
 }

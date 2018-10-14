@@ -14,6 +14,8 @@ if ($PSEdition -eq 'Core') {
     $WorkSheet = 1
 }
 
+$TemporaryFolder = [IO.Path]::GetTempPath()
+
 Describe 'Set-ExcelProperties - Setting Excel Properties' {
     It 'Using Set-ExcelProperties - Setting Author, Title and Subject Properties should work' {
         $Excel = New-ExcelDocument -Verbose

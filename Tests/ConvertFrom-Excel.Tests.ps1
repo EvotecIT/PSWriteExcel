@@ -13,10 +13,11 @@ if ($PSEdition -eq 'Core') {
 } else {
     $WorkSheet = 1
 }
+$TemporaryFolder = [IO.Path]::GetTempPath()
 
 Describe 'ConvertFrom-Excel - Should load Excel file into PSCustomObject)' {
     It 'Given (MyItems0) should convert it to Excel file and load Excel file to PSCustomObject ($Data) from specified Excel WorkSheet Name' {
-        $Path = [IO.Path]::Combine($Env:TEMP, "17.xlsx") # same as $Env:TEMP\17.xlsx but platform independant
+        $Path = [IO.Path]::Combine($TemporaryFolder, "17.xlsx") # same as $Env:TEMP\17.xlsx but platform independant
         $myitems0 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName'
         $Data = ConvertFrom-Excel -Path $Path -ExcelWorksheetName 'MyRandomName'
         $Data.Name[0] | Should -Be 'Joe'
