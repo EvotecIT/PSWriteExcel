@@ -27,7 +27,7 @@ Foreach ($Import in @($Assembly)) {
 #Export-ModuleMember -Function 'Add-ExcelWorkSheet' , 'Add-ExcelWorkSheetCell' , 'Add-ExcelWorksheetData' , 'ConvertTo-Excel' , 'ConvertFrom-Excel', 'Get-ExcelDocument' , 'Get-ExcelWorkSheet' , 'New-ExcelDocument' , 'Remove-ExcelWorksheet' , 'Save-ExcelDocument' , 'Set-ExcelTranslateFromR1C1' , 'Set-ExcelWorksheetAutoFilter' , 'Set-ExcelWorksheetAutoFit' , 'Set-ExcelWorkSheetFreezePane', 'Set-ExcelProperties', 'Get-ExcelProperties', 'Get-ExcelWorkSheetCell', 'Set-ExcelWorkSheetCellStyle'
 Export-ModuleMember -Function 'Add-ExcelWorkSheet' , 'Add-ExcelWorkSheetCell' , 'Add-ExcelWorksheetData' , 'ConvertTo-Excel', 'ConvertFrom-Excel', 'Get-ExcelDocument' , 'Get-ExcelWorkSheet' , 'Find-ExcelDocumentText', `
     'New-ExcelDocument' , 'Remove-ExcelWorksheet' , 'Save-ExcelDocument' , 'Get-ExcelTranslateFromR1C1', 'Get-ExcelTranslateToR1C1', 'Set-ExcelWorksheetAutoFilter' , 'Set-ExcelWorksheetAutoFit' , `
-    'Set-ExcelWorkSheetFreezePane', 'Set-ExcelProperties', 'Get-ExcelProperties', 'Get-ExcelWorkSheetCell', 'Set-ExcelWorkSheetCellStyle' `
+    'Set-ExcelWorkSheetFreezePane', 'Set-ExcelProperties', 'Get-ExcelProperties', 'Get-ExcelWorkSheetCell', 'Set-ExcelWorkSheetCellStyle', 'Set-ExcelWorkSheetCellStyleFont' `
     -Alias 'Set-ExcelTranslateFromR1C1', 'Set-ExcelTranslateToR1C1'
 
 
