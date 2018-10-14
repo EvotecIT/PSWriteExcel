@@ -26,13 +26,25 @@ Locale: {{ Update Locale }}
 ### [ConvertTo-Excel](ConvertTo-Excel.md)
 {{Fill in the Synopsis}}
 
+### [Find-ExcelDocumentText](Find-ExcelDocumentText.md)
+{{Fill in the Synopsis}}
+
 ### [Get-ExcelDocument](Get-ExcelDocument.md)
 {{Fill in the Synopsis}}
 
 ### [Get-ExcelProperties](Get-ExcelProperties.md)
 {{Fill in the Synopsis}}
 
+### [Get-ExcelTranslateFromR1C1](Get-ExcelTranslateFromR1C1.md)
+{{Fill in the Synopsis}}
+
+### [Get-ExcelTranslateToR1C1](Get-ExcelTranslateToR1C1.md)
+{{Fill in the Synopsis}}
+
 ### [Get-ExcelWorkSheet](Get-ExcelWorkSheet.md)
+{{Fill in the Synopsis}}
+
+### [Get-ExcelWorkSheetCell](Get-ExcelWorkSheetCell.md)
 {{Fill in the Synopsis}}
 
 ### [New-ExcelDocument](New-ExcelDocument.md)
@@ -47,13 +59,13 @@ Locale: {{ Update Locale }}
 ### [Set-ExcelProperties](Set-ExcelProperties.md)
 Following function allows setting properties for Excel Workbook. It works with standard Excel Properties.
 
-### [Set-ExcelTranslateFromR1C1](Set-ExcelTranslateFromR1C1.md)
-{{Fill in the Synopsis}}
-
 ### [Set-ExcelWorksheetAutoFilter](Set-ExcelWorksheetAutoFilter.md)
 {{Fill in the Synopsis}}
 
 ### [Set-ExcelWorksheetAutoFit](Set-ExcelWorksheetAutoFit.md)
+{{Fill in the Synopsis}}
+
+### [Set-ExcelWorkSheetCellStyleFont](Set-ExcelWorkSheetCellStyleFont.md)
 {{Fill in the Synopsis}}
 
 ### [Set-ExcelWorkSheetFreezePane](Set-ExcelWorkSheetFreezePane.md)

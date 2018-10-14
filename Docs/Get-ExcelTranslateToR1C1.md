@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-ExcelTranslateFromR1C1
+# Get-ExcelTranslateToR1C1
 
 ## SYNOPSIS
 {{Fill in the Synopsis}}
@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Set-ExcelTranslateFromR1C1 [[-Row] <Int32>] [[-Column] <Int32>] [<CommonParameters>]
+Get-ExcelTranslateToR1C1 [[-Value] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,26 +30,11 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -Column
-{{Fill Column Description}}
+### -Value
+{{Fill Value Description}}
 
 ```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Row
-{{Fill Row Description}}
-
-```yaml
-Type: Int32
+Type: String
 Parameter Sets: (All)
 Aliases:
 
