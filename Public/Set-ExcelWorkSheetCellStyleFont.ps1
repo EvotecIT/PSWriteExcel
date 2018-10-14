@@ -13,7 +13,7 @@ function Set-ExcelWorkSheetCellStyleFont {
         [nullable[int]] $Size,
         $Strike,
         $UnderLine,
-        [underlineType] $UnderLineType,
+        # [underlineType] $UnderLineType,
         $VerticalAlign
     )
     if (-not $ExcelWorksheet) { return }
@@ -42,9 +42,9 @@ function Set-ExcelWorkSheetCellStyleFont {
     if ($Strike) {
         $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Strike = $Strike
     }
-    if ($UnderLine) {
-        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.UnderLine = $UnderLine
-    }
+    # if ($UnderLine) {
+    #     $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.UnderLine = $UnderLine
+    # }
     if ($UnderLineType) {
         $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.UnderLineType = $UnderLineType
     }
