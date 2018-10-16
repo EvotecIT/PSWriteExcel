@@ -1,10 +1,10 @@
 function Save-ExcelDocument {
     param (
-        [parameter(Mandatory = $true, ValueFromPipeline = $true)][Alias('Document', 'Excel', 'Package')] $ExcelDocument,
+        [parameter(Mandatory = $false, ValueFromPipeline = $true)][Alias('Document', 'Excel', 'Package')] $ExcelDocument,
         [string] $FilePath,
         [alias('Show', 'Open')][switch] $OpenWorkBook
     )
-    if ($ExcelDocument.Workbook.Worksheets.Count -eq 0) {
+    if (-not $ExcelDocument -or $ExcelDocument.Workbook.Worksheets.Count -eq 0) {
         Write-Warning "Save-ExcelDocument - Saving workbook $FilePath was terminated. No worksheets/data exists."
         return
     }
