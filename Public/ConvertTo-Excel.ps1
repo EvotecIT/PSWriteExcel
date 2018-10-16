@@ -18,11 +18,18 @@ function ConvertTo-Excel {
 
     )
     Begin {
+        $Fail = $false
         $Data = @()
         $FirstRun = $true
-        if (Test-Path $FilePath) {
-            $Excel = Get-ExcelDocument -Path $FilePath
-            Write-Verbose "ConvertTo-Excel - Excel exists, Excel is loaded from file"
+        if ($FilePath -like '*.xlsx') {
+            if (Test-Path $FilePath) {
+                $Excel = Get-ExcelDocument -Path $FilePath
+                Write-Verbose "ConvertTo-Excel - Excel exists, Excel is loaded from file"
+            }
+        } else {
+            $Fail = $true
+            Write-Warning "ConvertTo-Excel - Excel path not given or incorrect (no .xlsx file format)"
+            return
         }
         if ($Excel -eq $null) {
             Write-Verbose "ConvertTo-Excel - Excel is null, creating new Excel"
@@ -30,9 +37,11 @@ function ConvertTo-Excel {
         }
     }
     Process {
+        if ($Fail) { return }
         $Data += $DataTable
     }
     End {
+        if ($Fail) { return }
         $Return = Add-ExcelWorksheetData `
             -DataTable $Data `
             -ExcelDocument $Excel `
