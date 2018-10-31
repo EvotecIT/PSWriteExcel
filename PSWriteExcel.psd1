@@ -82,6 +82,8 @@
             # A URL to the main website for this project.
             ProjectUri = 'https://github.com/EvotecIT/PSWriteExcel'
 
+            IconUri    = 'https://evotec.xyz/wp-content/uploads/2018/10/PSWriteExcel.png'
+
         } # End of PSData hashtable
 
     } # End of PrivateData hashtable
