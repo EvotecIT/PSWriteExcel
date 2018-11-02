@@ -1,7 +1,7 @@
 # PSWriteExcel - PowerShell Module
 
 [![Build status APPVEYOR](https://ci.appveyor.com/api/projects/status/n3ds0y45vc2dv6r2?svg=true)](https://ci.appveyor.com/project/PrzemyslawKlys/pswriteexcel)
-[![Build Status Azure](https://evotecpl.visualstudio.com/PSWriteExcel/_apis/build/status/EvotecIT.PSWriteExcel)](https://evotecpl.visualstudio.com/PSWriteExcel/_build/latest?definitionId=1)
+[![Build Status Azure DevOps](https://dev.azure.com/evotecpl/PSWriteExcel/_apis/build/status/EvotecIT.PSWriteExcel)](https://dev.azure.com/evotecpl/PSWriteExcel/_build/latest?definitionId=1)
 [![Build Status](https://travis-ci.org/EvotecIT/PSWriteExcel.svg?branch=master)](https://travis-ci.org/EvotecIT/PSWriteExcel)
 
 [PSWriteExcel](https://evotec.xyz/hub/scripts/pswriteexcel-powershell-module/) is very basic (at the moment) PowerShell module to create Microsoft Excel workbooks without Microsoft Excel installed. It's main purpose is to support/create [Excel for PSWinDocumentation](https://evotec.xyz/hub/scripts/pswindocumentation-powershell-module/) project. Depending on requirements of this project (and maybe few others) it may evolve or cover more feature sets. After some basic testing it seems to work fine on **Windows** and **Linux** and **MacOS**.
