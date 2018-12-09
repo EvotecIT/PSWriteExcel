@@ -47,6 +47,9 @@ Locale: {{ Update Locale }}
 ### [Get-ExcelWorkSheetCell](Get-ExcelWorkSheetCell.md)
 {{Fill in the Synopsis}}
 
+### [Get-ExcelWorkSheetData](Get-ExcelWorkSheetData.md)
+{{Fill in the Synopsis}}
+
 ### [New-ExcelDocument](New-ExcelDocument.md)
 {{Fill in the Synopsis}}
 

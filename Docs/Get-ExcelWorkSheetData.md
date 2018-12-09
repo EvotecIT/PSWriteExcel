@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Save-ExcelDocument
+# Get-ExcelWorkSheetData
 
 ## SYNOPSIS
 {{Fill in the Synopsis}}
@@ -13,7 +13,8 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Save-ExcelDocument [[-ExcelDocument] <Object>] [[-FilePath] <String>] [-OpenWorkBook] [<CommonParameters>]
+Get-ExcelWorkSheetData [[-ExcelDocument] <ExcelPackage>] [[-ExcelWorkSheet] <ExcelWorksheet>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,22 +35,22 @@ PS C:\> {{ Add example code here }}
 {{Fill ExcelDocument Description}}
 
 ```yaml
-Type: Object
+Type: ExcelPackage
 Parameter Sets: (All)
-Aliases: Document, Excel, Package
+Aliases:
 
 Required: False
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FilePath
-{{Fill FilePath Description}}
+### -ExcelWorkSheet
+{{Fill ExcelWorkSheet Description}}
 
 ```yaml
-Type: String
+Type: ExcelWorksheet
 Parameter Sets: (All)
 Aliases:
 
@@ -60,27 +61,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -OpenWorkBook
-{{Fill OpenWorkBook Description}}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: Show, Open
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### System.Object
+### None
 
 ## OUTPUTS
 
