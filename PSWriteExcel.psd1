@@ -33,7 +33,7 @@ Copyright = '(c) 2011-2018 Przemyslaw Klys. All rights reserved.'
 Description = 'Little project to create Excel files without Microsoft Excel being installed.'
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '5.1'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -57,7 +57,7 @@ RequiredModules = @('PSSharedGoods')
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = @()
+# ScriptsToProcess = @()
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
