@@ -1,11 +1,11 @@
 #Get public and private function definition files.
-$Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
-$Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
+$Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue -Recurse )
+$Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue -Recurse )
 if ($PSEdition -eq 'Core') {
-    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Microsoft.Extensions.*.dll -ErrorAction SilentlyContinue )
-    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\*.NetCORE.dll -ErrorAction SilentlyContinue )
+    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Core\Microsoft.Extensions.*.dll -ErrorAction SilentlyContinue )
+    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Core\*.NetCORE.dll -ErrorAction SilentlyContinue )
 } else {
-    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\*.Net40.dll -ErrorAction SilentlyContinue )
+    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Default\*.Net40.dll -ErrorAction SilentlyContinue )
 }
 #Dot source the files
 Foreach ($Import in @($Public + $Private)) {
