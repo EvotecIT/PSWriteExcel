@@ -21,7 +21,7 @@ function Save-ExcelDocument {
         $ErrorMessage = $_.Exception.Message
         if ($ErrorMessage -like "*The process cannot access the file*because it is being used by another process.*" -or
             $ErrorMessage -like "*Error saving file*") {
-            $FilePath = "$($([System.IO.Path]::GetTempFileName()).Split('.')[0]).xlsx"
+            $FilePath = Get-FileName -Temporary -Extension 'xlsx'
             Write-Warning "Save-ExcelDocument - Couldn't save file as it was in use or otherwise. Trying different name $FilePath"
             $ExcelDocument.File = $FilePath
             Save-ExcelDocument -ExcelDocument $ExcelDocument -FilePath $FilePath -OpenWorkBook:$OpenWorkBook
