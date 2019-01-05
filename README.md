@@ -13,7 +13,7 @@ More information can be found on dedicated page for [PSWriteExcel](https://evote
 - Long way - `New-ExcelDocument`, `Add-ExcelWorkSheet`, `Add-ExcelWorksheetData` and finally `Save-ExcelDocument`
 - Short way - `$Object | ConvertTo-Excel -Path 'Export.xlsx' -WorkSheetName 'MyName'`
 
-That's about it. There are no bells and whistles here.
+There are couple of more commands in play that may come useful. Feel free to explore.
 
 ## Example usage of Add-ExcelWorksheetData in action
 
