@@ -91,6 +91,10 @@ $InvoiceDataOrdered2 = @()
 $InvoiceDataOrdered2 += $InvoiceEntry7
 $InvoiceDataOrdered2 += $InvoiceEntry8
 
-$Path = "$Env:TEMP\17.xlsx"
-$myitems0 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName' #-OpenWorkBook
-$InvoiceEntry1 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName1' -OpenWorkBook -Verbose
+$Path = "$Env:TEMP\11.xlsx"
+Remove-Item -LiteralPath $Path -ErrorAction SilentlyContinue
+$myitems0 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandomName' -TableStyle Medium19 
+$InvoiceEntry1 | ConvertTo-Excel -Path $Path -AutoFilter -AutoSize -ExcelWorkSheetName 'MyRandom1Name1' -TableStyle Light19
+$InvoiceEntry1 | ConvertTo-Excel -Path $Path -AutoSize -ExcelWorkSheetName 'MyRandom1Name2' -TableStyle Medium20
+$InvoiceEntry1 | ConvertTo-Excel -Path $Path -AutoSize -ExcelWorkSheetName 'MyRandom1Name3' -TableStyle Dark7
+$InvoiceEntry1 | ConvertTo-Excel -Path $Path -AutoSize -ExcelWorkSheetName 'MyRandom1Name3' -TableStyle Medium9 -OpenWorkBook

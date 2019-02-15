@@ -17,6 +17,8 @@ function Add-ExcelWorksheetData {
         [alias('Rotate', 'RotateData', 'TransposeColumnsRows', 'TransposeData')][switch] $Transpose,
         [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE',
         [switch] $PreScanHeaders, # this feature scans properties of an object for all objects it contains to make sure all headers are there
+        [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
+        [string] $TableName,
         [bool] $Supress
     )
     Begin {
@@ -33,7 +35,10 @@ function Add-ExcelWorksheetData {
                 # throw 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. Terminating.'
             }
         }
-        Write-Verbose "Add-ExcelWorksheetData - Excel Row: $RowNr Column: $ColumnNr"
+        if ($AutoFilter -and $TableStyle) {
+            Write-Warning 'Add-ExcelWorksheetData - Using AutoFilter and TableStyle is not supported at same time. TableStyle will be skipped.'
+        }
+        #Write-Verbose "Add-ExcelWorksheetData - Excel Row: $RowNr Column: $ColumnNr"
     }
     Process {
         if ((Get-ObjectCount -Object $DataTable) -ne 0) {
@@ -89,6 +94,9 @@ function Add-ExcelWorksheetData {
                 -FreezeFirstColumn:$FreezeFirstColumn `
                 -FreezeTopRowFirstColumn:$FreezeTopRowFirstColumn `
                 -FreezePane $FreezePane
+        }
+        if ($TableStyle) { 
+            Set-ExcelWorkSheetTableStyle -ExcelWorksheet $ExcelWorksheet -TableStyle $TableStyle -DataRange $ExcelWorksheet.Dimension -TableName $TableName
         }
         if ($Supress) { return } else { return $ExcelWorkSheet }
     }

@@ -14,8 +14,9 @@ function ConvertTo-Excel {
         [int[]]$FreezePane,
         [alias('Rotate', 'RotateData', 'TransposeColumnsRows', 'TransposeData')][switch] $Transpose,
         [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE',
+        [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
+        [string] $TableName,
         [switch] $OpenWorkBook
-
     )
     Begin {
         $Fail = $false
@@ -54,7 +55,9 @@ function ConvertTo-Excel {
             -FreezePane $FreezePane `
             -Transpose:$Transpose `
             -TransposeSort $TransposeSort `
-            -Option $Option
+            -Option $Option `
+            -TableStyle $TableStyle `
+            -TableName $TableName
         Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook:$OpenWorkBook
     }
 }
