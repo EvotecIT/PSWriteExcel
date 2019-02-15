@@ -10,14 +10,20 @@ More information can be found on dedicated page for [PSWriteExcel](https://evote
 
 ## There are 2 ways to use this module
 
-- Long way - `New-ExcelDocument`, `Add-ExcelWorkSheet`, `Add-ExcelWorksheetData` and finally `Save-ExcelDocument`
-- Short way - `$Object | ConvertTo-Excel -Path 'Export.xlsx' -WorkSheetName 'MyName'`
+-   Long way - `New-ExcelDocument`, `Add-ExcelWorkSheet`, `Add-ExcelWorksheetData` and finally `Save-ExcelDocument`
+-   Short way - `$Object | ConvertTo-Excel -Path 'Export.xlsx' -WorkSheetName 'MyName'`
 
 There are couple of more commands in play that may come useful. Feel free to explore.
 
 ## Example usage of Add-ExcelWorksheetData in action
 
 ![image](https://evotec.xyz/wp-content/uploads/2018/08/PSWriteExcel.gif.pagespeed.ce.WKvsf00WoC.gif)
+
+## Changelog
+
+-   0.0.16 - 15.02.2019
+    -   Added -TableStyle ConvertTo-Excel
+    -   Added -TableStyle Add-ExcelWorksheetData
 
 ## Installing PowerShell Core on (Linux - Ubuntu)
 
@@ -36,7 +42,6 @@ pwsh
 
 For anything else refer to great Microsoft Article - [Installing PowerShell Core on Linux](https://docs.microsoft.com/en-US/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
 
-
 ## Installing on Windows / Linux / MacOS
 
 ```powershell
@@ -54,4 +59,4 @@ Get-Process | ConvertTo-Excel -Path 'ThisIsMyExcel.xlsx' -WorkSheetName 'AndWork
 
 ## Credits
 
-This module is based on [EPPlus](<https://github.com/JanKallman/EPPlus>) and it's doing all the magic behind this project. PSWriteExcel is merely a wrapper around that with few PowerShell tricks around converting objects into tables.
+This module is based on [EPPlus](https://github.com/JanKallman/EPPlus) and it's doing all the magic behind this project. PSWriteExcel is merely a wrapper around that with few PowerShell tricks around converting objects into tables.
