@@ -21,6 +21,8 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 ## Changelog
 
+-   0.0.17 - 22.03.2019
+    -   Added -PreScanHeaders to ConvertTo-Excel - objects are prescanned first so that property names are known before exporting
 -   0.0.16 - 15.02.2019
     -   Added -TableStyle ConvertTo-Excel
     -   Added -TableStyle Add-ExcelWorksheetData

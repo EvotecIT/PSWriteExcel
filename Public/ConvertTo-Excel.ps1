@@ -16,12 +16,12 @@ function ConvertTo-Excel {
         [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE',
         [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
         [string] $TableName,
-        [switch] $OpenWorkBook
+        [switch] $OpenWorkBook,
+        [switch] $PreScanHeaders
     )
     Begin {
         $Fail = $false
         $Data = @()
-        $FirstRun = $true
         if ($FilePath -like '*.xlsx') {
             if (Test-Path $FilePath) {
                 $Excel = Get-ExcelDocument -Path $FilePath
@@ -32,7 +32,7 @@ function ConvertTo-Excel {
             Write-Warning "ConvertTo-Excel - Excel path not given or incorrect (no .xlsx file format)"
             return
         }
-        if ($Excel -eq $null) {
+        if ($null -eq $Excel) {
             Write-Verbose "ConvertTo-Excel - Excel is null, creating new Excel"
             $Excel = New-ExcelDocument #-Verbose
         }
@@ -57,7 +57,7 @@ function ConvertTo-Excel {
             -TransposeSort $TransposeSort `
             -Option $Option `
             -TableStyle $TableStyle `
-            -TableName $TableName
+            -TableName $TableName -PreScanHeaders:$PreScanHeaders
         Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook:$OpenWorkBook
     }
 }
