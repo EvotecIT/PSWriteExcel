@@ -21,7 +21,7 @@ function ConvertTo-Excel {
     )
     Begin {
         $Fail = $false
-        $Data = @()
+        $Data = [System.Collections.Generic.List[Object]]::new()
         if ($FilePath -like '*.xlsx') {
             if (Test-Path $FilePath) {
                 $Excel = Get-ExcelDocument -Path $FilePath
@@ -39,7 +39,7 @@ function ConvertTo-Excel {
     }
     Process {
         if ($Fail) { return }
-        $Data += $DataTable
+        $Data.Add($DataTable)
     }
     End {
         if ($Fail) { return }
