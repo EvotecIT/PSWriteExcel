@@ -1,4 +1,5 @@
 function Save-ExcelDocument {
+    [CmdletBinding()]
     param (
         [parameter(Mandatory = $false, ValueFromPipeline = $true)][Alias('Document', 'Excel', 'Package')] $ExcelDocument,
         [string] $FilePath,

@@ -1,4 +1,5 @@
 function Find-ExcelDocumentText {
+    [CmdletBinding()]
     param(
         [string] $FilePath,
         [string] $FilePathTarget,

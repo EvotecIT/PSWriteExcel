@@ -3,7 +3,7 @@ function Add-ExcelWorksheetData {
     Param(
         [alias('ExcelWorkbook')][OfficeOpenXml.ExcelPackage] $ExcelDocument,
         $ExcelWorksheet, # [OfficeOpenXml.ExcelWorksheet]
-        [Parameter(ValueFromPipeline = $true)][Object] $DataTable,
+        [Parameter(ValueFromPipeline = $true)][Array] $DataTable,
         [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
         [int]$StartRow = 1,
         [int]$StartColumn = 1,
@@ -23,29 +23,71 @@ function Add-ExcelWorksheetData {
     )
     Begin {
         $FirstRun = $True
-        $RowNr = if ($StartRow -ne $null -and $StartRow -ne 0) { $StartRow } else { 1 }
-        $ColumnNr = if ($StartColumn -ne $null -and $StartColumn -ne 0 ) { $StartColumn } else { 1 }
-        if ($ExcelWorksheet -ne $null) {
+        $RowNr = if ($null -ne $StartRow -and $StartRow -ne 0) { $StartRow } else { 1 }
+        $ColumnNr = if ($null -ne $StartColumn -and $StartColumn -ne 0 ) { $StartColumn } else { 1 }
+        if ($null -ne $ExcelWorksheet) {
             Write-Verbose "Add-ExcelWorkSheetData - ExcelWorksheet given. Continuing..."
         } else {
             if ($ExcelDocument) {
                 $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -Name $ExcelWorksheetName -Option $Option
             } else {
                 Write-Warning 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. No data will be added...'
-                # throw 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. Terminating.'
             }
         }
         if ($AutoFilter -and $TableStyle) {
             Write-Warning 'Add-ExcelWorksheetData - Using AutoFilter and TableStyle is not supported at same time. TableStyle will be skipped.'
         }
-        #Write-Verbose "Add-ExcelWorksheetData - Excel Row: $RowNr Column: $ColumnNr"
     }
     Process {
-        if ((Get-ObjectCount -Object $DataTable) -ne 0) {
+        if ($DataTable.Count -gt 0) {
             if ($FirstRun) {
                 $FirstRun = $false
-                #Write-Verbose "Add-ExcelWorksheetData - FirstRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
-                if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
+                if ($Transpose) {
+                    $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort
+                }
+                <#
+                if ($DataTable[0] -is [System.Collections.IDictionary]) {
+                    $Header = @('Name', 'Value')
+                    foreach ($Head in $Header) {
+                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Head
+                        $ColumnNr++
+                    }
+                    $RowNr++
+                    foreach ($Data in $DataTable) {
+                        foreach ($_ in $Data.GetEnumerator()) {
+                            $ColumnNr = $StartColumn
+                            Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $_.Name
+                            Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn ($ColumnNr + 1) -CellValue $_.Value
+                            $RowNr++
+                        }
+                    }
+                } elseif ($DataTable[0].GetType().Name -match 'bool|byte|char|datetime|decimal|double|ExcelHyperLink|float|int|long|sbyte|short|string|timespan|uint|ulong|URI|ushort') {
+                    foreach ($Data in $DataTable) {
+                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Data
+                        $RowNr++
+                    }
+                } else {
+                    # PSCustomobject
+                    # Header processng
+                    $Header = $DataTable[0].PSObject.Properties.Name
+                    foreach ($Head in $Header) {
+                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Head
+                        $ColumnNr++
+                    }
+                    $RowNr++
+                    # Data processing
+                    foreach ($Data in $DataTable) {
+                        $ColumnNr = $StartColumn
+                        foreach ($HeaderName in $Header) {
+                            $Value = $Data.$HeaderName
+                            Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value
+                             $ColumnNr++
+                        }
+                        $RowNr++
+                    }
+                }
+#>
+
                 $Data = Format-PSTable -Object $DataTable -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -PreScanHeaders:$PreScanHeaders # -SkipTitle:$NoHeader
                 $WorksheetHeaders = $Data[0] # Saving Header information for later use
                 #Write-Verbose "Add-ExcelWorksheetData - Headers: $($WorksheetHeaders -join ', ') - Data Count: $($Data.Count)"
@@ -59,17 +101,51 @@ function Add-ExcelWorksheetData {
                     $ColumnNr = $StartColumn
                     foreach ($Value in $RowData) {
                         #Write-Verbose "Row: $RowNr / $ArrRowNr Column: $ColumnNr / $ArrColumnNr Data: $Value Title: $($WorksheetHeaders[$ArrColumnNr])"
-                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value -Supress $True
+                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value
                         $ColumnNr++
                         $ArrColumnNr++
                     }
                     $ArrRowNr++
                     $RowNr++
-
                 }
+<#
+#>
             } else {
                 #Write-Verbose "Add-ExcelWorksheetData - NextRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
-                if ($Transpose) { $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort }
+
+                if ($Transpose) {
+                    $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort
+                }
+
+<#
+                if ($DataTable[0] -is [System.Collections.IDictionary]) {
+                    foreach ($Data in $DataTable) {
+                        foreach ($_ in $Data.GetEnumerator()) {
+                            $ColumnNr = $StartColumn
+                            Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $_.Name
+                            Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn ($ColumnNr + 1) -CellValue $_.Value
+                            $RowNr++
+                        }
+                    }
+                } elseif ($DataTable[0].GetType().Name -match 'bool|byte|char|datetime|decimal|double|ExcelHyperLink|float|int|long|sbyte|short|string|timespan|uint|ulong|URI|ushort') {
+                    foreach ($Data in $DataTable) {
+                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Data
+                        $RowNr++
+                    }
+                } else {
+                    # Data processing
+                    foreach ($Data in $DataTable) {
+                        $ColumnNr = $StartColumn
+                        foreach ($HeaderName in $Header) {
+                            $Value = $Data.$HeaderName
+                            Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value
+                            $ColumnNr++
+                        }
+                        $RowNr++
+                    }
+                }
+#>
+
                 $Data = Format-PSTable -Object $DataTable -SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $WorksheetHeaders -PreScanHeaders:$PreScanHeaders
                 $ArrRowNr = 0
                 foreach ($RowData in $Data) {
@@ -77,12 +153,14 @@ function Add-ExcelWorksheetData {
                     $ColumnNr = $StartColumn
                     foreach ($Value in $RowData) {
                         #Write-Verbose "Row: $RowNr / $ArrRowNr Column: $ColumnNr / $ArrColumnNr Data: $Value Title: $($WorksheetHeaders[$ArrColumnNr])"
-                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value -Supress $True
+                        Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorksheet -CellRow $RowNr -CellColumn $ColumnNr -CellValue $Value
                         $ColumnNr++; $ArrColumnNr++
                     }
                     $RowNr++; $ArrRowNr++
                 }
+
             }
+
         }
     }
     End {
@@ -95,7 +173,7 @@ function Add-ExcelWorksheetData {
                 -FreezeTopRowFirstColumn:$FreezeTopRowFirstColumn `
                 -FreezePane $FreezePane
         }
-        if ($TableStyle) { 
+        if ($TableStyle) {
             Set-ExcelWorkSheetTableStyle -ExcelWorksheet $ExcelWorksheet -TableStyle $TableStyle -DataRange $ExcelWorksheet.Dimension -TableName $TableName
         }
         if ($Supress) { return } else { return $ExcelWorkSheet }

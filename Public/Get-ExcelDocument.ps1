@@ -1,4 +1,5 @@
 function Get-ExcelDocument {
+    [CmdletBinding()]
     param(
         [alias("FilePath")][string] $Path
     )

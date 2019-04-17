@@ -1,4 +1,5 @@
 function Get-ExcelProperties {
+    [CmdletBinding()]
     param(
         [OfficeOpenXml.ExcelPackage] $ExcelDocument
     )
