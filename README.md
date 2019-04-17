@@ -23,6 +23,7 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 -   0.1.0 - 17.04.2019
     -   Big Performance improvements, removed some reduntant calls
+    -   Updated .DLL to newest version (compiled from Source Code on day 15.04.2019 with all changes/fixes in EPPlus)
 -   0.0.17 - 22.03.2019
     -   Added -PreScanHeaders to ConvertTo-Excel - objects are prescanned first so that property names are known before exporting
 -   0.0.16 - 15.02.2019
