@@ -19,6 +19,8 @@ function Add-ExcelWorksheetData {
         [switch] $PreScanHeaders, # this feature scans properties of an object for all objects it contains to make sure all headers are there
         [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
         [string] $TableName,
+        [RGBColors] $TabColor = [RGBColors]::None,
+        [switch] $Parallel,
         [bool] $Supress
     )
     Begin {
@@ -108,7 +110,7 @@ function Add-ExcelWorksheetData {
                     $ArrRowNr++
                     $RowNr++
                 }
-<#
+                <#
 #>
             } else {
                 #Write-Verbose "Add-ExcelWorksheetData - NextRun - RowsToProcess: $($DataTable.Count) - Transpose: $Transpose AutoFit: $Autofit Autofilter: $Autofilter"
@@ -117,7 +119,7 @@ function Add-ExcelWorksheetData {
                     $DataTable = Format-TransposeTable -Object $DataTable -Sort $TransposeSort
                 }
 
-<#
+                <#
                 if ($DataTable[0] -is [System.Collections.IDictionary]) {
                     foreach ($Data in $DataTable) {
                         foreach ($_ in $Data.GetEnumerator()) {
@@ -175,6 +177,9 @@ function Add-ExcelWorksheetData {
         }
         if ($TableStyle) {
             Set-ExcelWorkSheetTableStyle -ExcelWorksheet $ExcelWorksheet -TableStyle $TableStyle -DataRange $ExcelWorksheet.Dimension -TableName $TableName
+        }
+        if ($TabColor -ne [RGBColors]::None) {
+            $ExcelWorksheet.TabColor = ConvertFrom-Color -Color $TabColor
         }
         if ($Supress) { return } else { return $ExcelWorkSheet }
     }

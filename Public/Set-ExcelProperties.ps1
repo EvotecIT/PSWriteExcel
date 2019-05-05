@@ -9,7 +9,7 @@ function Set-ExcelProperties {
         [string] $Keywords,
         [string] $LastModifiedBy,
         [string] $LastPrinted,
-        [DateTime] $Created,
+        [nullable[DateTime]] $Created,
         [string] $Category,
         [string] $Status,
         [string] $Application,
