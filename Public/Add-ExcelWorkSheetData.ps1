@@ -20,7 +20,6 @@ function Add-ExcelWorksheetData {
         [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
         [string] $TableName,
         [RGBColors] $TabColor = [RGBColors]::None,
-        [switch] $Parallel,
         [bool] $Supress
     )
     Begin {
