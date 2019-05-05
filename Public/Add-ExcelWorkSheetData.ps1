@@ -2,7 +2,7 @@ function Add-ExcelWorksheetData {
     [CmdletBinding()]
     Param(
         [alias('ExcelWorkbook')][OfficeOpenXml.ExcelPackage] $ExcelDocument,
-        $ExcelWorksheet, # [OfficeOpenXml.ExcelWorksheet]
+        [OfficeOpenXml.ExcelWorksheet] $ExcelWorksheet, # [OfficeOpenXml.ExcelWorksheet]
         [Parameter(ValueFromPipeline = $true)][Array] $DataTable,
         [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
         [int]$StartRow = 1,
@@ -31,6 +31,7 @@ function Add-ExcelWorksheetData {
         } else {
             if ($ExcelDocument) {
                 $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -Name $ExcelWorksheetName -Option $Option
+                Write-Verbose "Add-ExcelWorkSheetData - ExcelWorksheet $($ExcelWorkSheet.Name)"
             } else {
                 Write-Warning 'Add-ExcelWorksheetData - ExcelDocument and ExcelWorksheet not given. No data will be added...'
             }
@@ -180,6 +181,7 @@ function Add-ExcelWorksheetData {
         if ($TabColor -ne [RGBColors]::None) {
             $ExcelWorksheet.TabColor = ConvertFrom-Color -Color $TabColor
         }
+        #Write-Verbose 'Add-ExcelWorksheetData - Ending...'
         if ($Supress) { return } else { return $ExcelWorkSheet }
     }
 

@@ -43,7 +43,7 @@ function ConvertTo-Excel {
     }
     End {
         if ($Fail) { return }
-        $Return = Add-ExcelWorksheetData `
+        Add-ExcelWorksheetData `
             -DataTable $Data `
             -ExcelDocument $Excel `
             -AutoFit:$AutoFit `
@@ -57,7 +57,7 @@ function ConvertTo-Excel {
             -TransposeSort $TransposeSort `
             -Option $Option `
             -TableStyle $TableStyle `
-            -TableName $TableName -PreScanHeaders:$PreScanHeaders
+            -TableName $TableName -PreScanHeaders:$PreScanHeaders -Supress $true
         Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook:$OpenWorkBook
     }
 }
