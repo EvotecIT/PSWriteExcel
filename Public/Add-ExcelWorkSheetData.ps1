@@ -90,7 +90,7 @@ function Add-ExcelWorksheetData {
                 }
 #>
 
-                $Data = Format-PSTable -Object $DataTable -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -PreScanHeaders:$PreScanHeaders # -SkipTitle:$NoHeader
+                $Data = Format-PSTable -Object $DataTable -ExcludeProperty $ExcludeProperty -PreScanHeaders:$PreScanHeaders # -SkipTitle:$NoHeader
                 $WorksheetHeaders = $Data[0] # Saving Header information for later use
                 #Write-Verbose "Add-ExcelWorksheetData - Headers: $($WorksheetHeaders -join ', ') - Data Count: $($Data.Count)"
                 if ($NoHeader) {
@@ -148,7 +148,7 @@ function Add-ExcelWorksheetData {
                 }
 #>
 
-                $Data = Format-PSTable -Object $DataTable -SkipTitle -ExcludeProperty $ExcludeProperty -NoAliasOrScriptProperties:$NoAliasOrScriptProperties -DisplayPropertySet:$DisplayPropertySet -OverwriteHeaders $WorksheetHeaders -PreScanHeaders:$PreScanHeaders
+                $Data = Format-PSTable -Object $DataTable -SkipTitle -ExcludeProperty $ExcludeProperty -OverwriteHeaders $WorksheetHeaders -PreScanHeaders:$PreScanHeaders
                 $ArrRowNr = 0
                 foreach ($RowData in $Data) {
                     $ArrColumnNr = 0
