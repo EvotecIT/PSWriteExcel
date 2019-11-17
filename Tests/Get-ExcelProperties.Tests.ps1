@@ -2,8 +2,8 @@
 Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force #-Verbose
 
 $myitems0 = @(
-    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover"},
-    [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover"},
+    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover" },
+    [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover" },
     [pscustomobject]@{name = "Jason another one"; age = 42; info = "Food lover"
     }
 )

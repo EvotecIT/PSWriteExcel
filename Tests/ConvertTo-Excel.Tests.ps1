@@ -3,35 +3,35 @@ Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force #-Verbose
 
 ### Preparing Data Start
 $myitems0 = @(
-    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover"},
-    [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover"},
-    [pscustomobject]@{name = "Jason"; age = 42; info = "Food lover"}
+    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover" },
+    [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover" },
+    [pscustomobject]@{name = "Jason"; age = 42; info = "Food lover" }
 )
 
 $myitems1 = @(
-    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover"}
+    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover" }
 )
 $myitems2 = [PSCustomObject]@{
     name = "Joe"; age = 32; info = "Cat lover"
 }
 
-$InvoiceEntry1 = [ordered] @{}
+$InvoiceEntry1 = [ordered] @{ }
 $InvoiceEntry1.Description = 'IT Services 1'
 $InvoiceEntry1.Amount = '$200'
 
-$InvoiceEntry2 = [ordered] @{}
+$InvoiceEntry2 = [ordered] @{ }
 $InvoiceEntry2.Description = 'IT Services 2'
 $InvoiceEntry2.Amount = '$300'
 
-$InvoiceEntry3 = [ordered] @{}
+$InvoiceEntry3 = [ordered] @{ }
 $InvoiceEntry3.Description = 'IT Services 3'
 $InvoiceEntry3.Amount = '$288'
 
-$InvoiceEntry4 = [ordered]@{}
+$InvoiceEntry4 = [ordered]@{ }
 $InvoiceEntry4.Description = 'IT Services 4'
 $InvoiceEntry4.Amount = '$301'
 
-$InvoiceEntry5 = [ordered] @{}
+$InvoiceEntry5 = [ordered] @{ }
 $InvoiceEntry5.Description = 'IT Services 5'
 $InvoiceEntry5.Amount = '$299'
 
@@ -42,18 +42,18 @@ $InvoiceData1 += $InvoiceEntry3
 $InvoiceData1 += $InvoiceEntry4
 $InvoiceData1 += $InvoiceEntry5
 
-$InvoiceData2 = $InvoiceData1.ForEach( {[PSCustomObject]$_})
+$InvoiceData2 = $InvoiceData1.ForEach( { [PSCustomObject]$_ })
 
 $InvoiceData3 = @()
 $InvoiceData3 += $InvoiceEntry1
 
-$InvoiceData4 = $InvoiceData3.ForEach( {[PSCustomObject]$_})
+$InvoiceData4 = $InvoiceData3.ForEach( { [PSCustomObject]$_ })
 ### Preparing Data End
 
 $Object1 = Get-Process | Select-Object ProcessName, Handle, StartTime -First 5
-$Object2 = Get-PSDrive | Where { $_.Provider -like '*Registry*' -or $_.Provider -like '*Environment*' -or $_.Provider -like '*FileSystem*' }
-$Object3 = Get-PSDrive | Where { $_.Provider -like '*Registry*' -or $_.Provider -like '*Environment*' -or $_.Provider -like '*FileSystem*'} | Select-Object * -First 2
-$Object4 = Get-PSDrive | Where { $_.Provider -like '*Registry*' -or $_.Provider -like '*Environment*' -or $_.Provider -like '*FileSystem*'} | Select-Object * -First 1
+$Object2 = Get-PSDrive | Where-Object { $_.Provider -like '*Registry*' -or $_.Provider -like '*Environment*' -or $_.Provider -like '*FileSystem*' }
+$Object3 = Get-PSDrive | Where-Object { $_.Provider -like '*Registry*' -or $_.Provider -like '*Environment*' -or $_.Provider -like '*FileSystem*' } | Select-Object * -First 2
+$Object4 = Get-PSDrive | Where-Object { $_.Provider -like '*Registry*' -or $_.Provider -like '*Environment*' -or $_.Provider -like '*FileSystem*' } | Select-Object * -First 1
 
 $obj = New-Object System.Object
 $obj | Add-Member -type NoteProperty -name Name -Value "Ryan_PC"
@@ -79,11 +79,11 @@ $myArray1 = @($obj, $myobject2, $myObject3)
 $myArray2 = @($obj)
 
 
-$InvoiceEntry7 = [ordered]@{}
+$InvoiceEntry7 = [ordered]@{ }
 $InvoiceEntry7.Description = 'IT Services 4'
 $InvoiceEntry7.Amount = '$301'
 
-$InvoiceEntry8 = [ordered]@{}
+$InvoiceEntry8 = [ordered]@{ }
 $InvoiceEntry8.Description = 'IT Services 5'
 $InvoiceEntry8.Amount = '$299'
 
@@ -156,7 +156,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
         $pkg.Dispose()
     }
     It 'Given (MyItems2) should have 3 columns, 2 rows, data should be in proper columns' {
-       $Path = [IO.Path]::Combine($TemporaryFolder, "3.xlsx")
+        $Path = [IO.Path]::Combine($TemporaryFolder, "3.xlsx")
         $myitems1 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName'
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -Be 2
@@ -248,7 +248,7 @@ Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosiz
     }
 
     It 'Given (Object2) should have 10 or more columns, Have 2 or more rows, data is in random order (unfortunately)' {
-       $Path = [IO.Path]::Combine($TemporaryFolder, "10.xlsx")
+        $Path = [IO.Path]::Combine($TemporaryFolder, "10.xlsx")
         $Object2 | ConvertTo-Excel -Path $Path -ExcelWorkSheetName 'MyRandomName' #-Verbose
         $pkg = Get-ExcelDocument -Path $Path
         $Pkg.Workbook.Worksheets[$Worksheet].Dimension.Rows | Should -BeGreaterOrEqual 2

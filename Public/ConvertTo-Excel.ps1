@@ -4,7 +4,7 @@ function ConvertTo-Excel {
         [alias("path")][string] $FilePath,
         [OfficeOpenXml.ExcelPackage] $Excel,
         [alias('Name', 'WorksheetName')][string] $ExcelWorkSheetName,
-        [alias("TargetData")][Parameter(ValueFromPipeline = $true)][Object] $DataTable,
+        [alias("TargetData")][Parameter(ValueFromPipeline = $true)][Array] $DataTable,
         [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
         [switch] $AutoFilter,
         [alias("Autosize")][switch] $AutoFit,
@@ -39,7 +39,9 @@ function ConvertTo-Excel {
     }
     Process {
         if ($Fail) { return }
-        $Data.Add($DataTable)
+        foreach ($_ in $DataTable) {
+            $Data.Add($_)
+        }
     }
     End {
         if ($Fail) { return }

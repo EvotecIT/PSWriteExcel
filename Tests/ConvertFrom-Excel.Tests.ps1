@@ -3,9 +3,9 @@ Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force #-Verbose
 
 ### Preparing Data Start
 $myitems0 = @(
-    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover"},
-    [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover"},
-    [pscustomobject]@{name = "Jason"; age = 42; info = "Food lover"}
+    [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover" },
+    [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover" },
+    [pscustomobject]@{name = "Jason"; age = 42; info = "Food lover" }
 )
 
 if ($PSEdition -eq 'Core') {

@@ -19,7 +19,7 @@ function Add-ExcelWorksheetData {
         [switch] $PreScanHeaders, # this feature scans properties of an object for all objects it contains to make sure all headers are there
         [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
         [string] $TableName,
-        [RGBColors] $TabColor = [RGBColors]::None,
+        [string] $TabColor,
         [bool] $Supress
     )
     Begin {
@@ -166,23 +166,27 @@ function Add-ExcelWorksheetData {
         }
     }
     End {
-        if ($AutoFit) { Set-ExcelWorksheetAutoFit -ExcelWorksheet $ExcelWorksheet }
-        if ($AutoFilter) { Set-ExcelWorksheetAutoFilter -ExcelWorksheet $ExcelWorksheet -DataRange $ExcelWorksheet.Dimension -AutoFilter $AutoFilter }
-        if ($FreezeTopRow -or $FreezeFirstColumn -or $FreezeTopRowFirstColumn -or $FreezePane) {
-            Set-ExcelWorkSheetFreezePane -ExcelWorksheet $ExcelWorksheet `
-                -FreezeTopRow:$FreezeTopRow `
-                -FreezeFirstColumn:$FreezeFirstColumn `
-                -FreezeTopRowFirstColumn:$FreezeTopRowFirstColumn `
-                -FreezePane $FreezePane
+        if ($null -ne $ExcelWorksheet) {
+            if ($AutoFit) { Set-ExcelWorksheetAutoFit -ExcelWorksheet $ExcelWorksheet }
+            if ($AutoFilter) { Set-ExcelWorksheetAutoFilter -ExcelWorksheet $ExcelWorksheet -DataRange $ExcelWorksheet.Dimension -AutoFilter $AutoFilter }
+            if ($FreezeTopRow -or $FreezeFirstColumn -or $FreezeTopRowFirstColumn -or $FreezePane) {
+                Set-ExcelWorkSheetFreezePane -ExcelWorksheet $ExcelWorksheet `
+                    -FreezeTopRow:$FreezeTopRow `
+                    -FreezeFirstColumn:$FreezeFirstColumn `
+                    -FreezeTopRowFirstColumn:$FreezeTopRowFirstColumn `
+                    -FreezePane $FreezePane
+            }
+            if ($TableStyle) {
+                Set-ExcelWorkSheetTableStyle -ExcelWorksheet $ExcelWorksheet -TableStyle $TableStyle -DataRange $ExcelWorksheet.Dimension -TableName $TableName
+            }
+            if ($TabColor) {
+                $ExcelWorksheet.TabColor = ConvertFrom-Color -Color $TabColor
+            }
+            #Write-Verbose 'Add-ExcelWorksheetData - Ending...'
+            if ($Supress) { return } else { return $ExcelWorkSheet }
         }
-        if ($TableStyle) {
-            Set-ExcelWorkSheetTableStyle -ExcelWorksheet $ExcelWorksheet -TableStyle $TableStyle -DataRange $ExcelWorksheet.Dimension -TableName $TableName
-        }
-        if ($TabColor -ne [RGBColors]::None) {
-            $ExcelWorksheet.TabColor = ConvertFrom-Color -Color $TabColor
-        }
-        #Write-Verbose 'Add-ExcelWorksheetData - Ending...'
-        if ($Supress) { return } else { return $ExcelWorkSheet }
     }
 
 }
+
+Register-ArgumentCompleter -CommandName Add-ExcelWorksheetData -ParameterName TabColor -ScriptBlock { $Script:RGBColors.Keys }

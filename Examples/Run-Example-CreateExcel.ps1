@@ -1,5 +1,5 @@
 
-Import-Module PSWriteExcel -Force -Verbose
+#Import-Module .\PSWriteExcel.psd1 -Force #-Verbose
 
 $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-Test.xlsx"
 
@@ -21,10 +21,10 @@ $myitems0 = @(
 )
 
 Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
-Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet2 -DataTable $myitems0 -AutoFit -AutoFilter  -Supress $True
-Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet3 -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
-Add-ExcelWorksheetData -DataTable $myitems0 -Verbose -AutoFit -AutoFilter -Supress $True
-Add-ExcelWorksheetData -DataTable $myitems0 -AutoFit -AutoFilter -ExcelDocument $Excel -Supress $True
+Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet2 -DataTable $myitems0 -AutoFit -AutoFilter  -Supress $True -PreScanHeaders -TabColor ChartreuseYellow
+Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet3 -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True -TabColor DarkPurple
+Add-ExcelWorksheetData -DataTable $myitems0 -Verbose -AutoFit -AutoFilter -Supress $True -TabColor Bisque -ExcelDocument $Excel
+Add-ExcelWorksheetData -DataTable $myitems0 -AutoFit -AutoFilter -ExcelDocument $Excel -Supress $True -TabColor Grey
 
 $myitems0 | Add-ExcelWorksheetData -AutoFit -AutoFilter -ExcelDocument $Excel -ExcelWorksheetName 'Hello Motto' -Supress $True -FreezeTopRow -FreezeFirstColumn -Verbose
 
