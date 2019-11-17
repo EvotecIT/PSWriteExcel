@@ -69,15 +69,15 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport    = 'Add-ExcelWorkSheet', 'Add-ExcelWorkSheetCell',
-    'Add-ExcelWorksheetData', 'ConvertFrom-Excel', 'ConvertTo-Excel',
-    'Find-ExcelDocumentText', 'Get-ExcelDocument', 'Get-ExcelProperties',
-    'Get-ExcelTranslateFromR1C1', 'Get-ExcelTranslateToR1C1',
-    'Get-ExcelWorkSheet', 'Get-ExcelWorkSheetCell',
-    'Get-ExcelWorkSheetData', 'New-ExcelDocument',
-    'Remove-ExcelWorksheet', 'Save-ExcelDocument', 'Set-ExcelProperties',
-    'Set-ExcelWorksheetAutoFilter', 'Set-ExcelWorksheetAutoFit',
-    'Set-ExcelWorkSheetCellStyleFont', 'Set-ExcelWorkSheetFreezePane',
+    FunctionsToExport    = 'Add-ExcelWorkSheet', 'Add-ExcelWorkSheetCell', 
+    'Add-ExcelWorksheetData', 'ConvertFrom-Excel', 'ConvertTo-Excel', 
+    'Find-ExcelDocumentText', 'Get-ExcelDocument', 'Get-ExcelProperties', 
+    'Get-ExcelTranslateFromR1C1', 'Get-ExcelTranslateToR1C1', 
+    'Get-ExcelWorkSheet', 'Get-ExcelWorkSheetCell', 
+    'Get-ExcelWorkSheetData', 'New-ExcelDocument', 
+    'Remove-ExcelWorksheet', 'Save-ExcelDocument', 'Set-ExcelProperties', 
+    'Set-ExcelWorksheetAutoFilter', 'Set-ExcelWorksheetAutoFit', 
+    'Set-ExcelWorkSheetCellStyleFont', 'Set-ExcelWorkSheetFreezePane', 
     'Set-ExcelWorkSheetTableStyle'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
