@@ -8,11 +8,11 @@ $myitems0 = @(
     [pscustomobject]@{name = "Jason"; age = 42; info = "Food lover" }
 )
 
-if ($PSEdition -eq 'Core') {
-    $WorkSheet = 0 # Core version has 0 based index for $Worksheets
-} else {
-    $WorkSheet = 1
-}
+#if ($PSEdition -eq 'Core') {
+#    $WorkSheet = 0 # Core version has 0 based index for $Worksheets
+#} else {
+#    $WorkSheet = 1
+#}
 $TemporaryFolder = [IO.Path]::GetTempPath()
 
 Describe 'ConvertFrom-Excel - Should load Excel file into PSCustomObject)' {

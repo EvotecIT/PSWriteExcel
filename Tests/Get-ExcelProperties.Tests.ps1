@@ -8,11 +8,11 @@ $myitems0 = @(
     }
 )
 
-if ($PSEdition -eq 'Core') {
-    $WorkSheet = 0 # Core version has 0 based index for $Worksheets
-} else {
-    $WorkSheet = 1
-}
+#if ($PSEdition -eq 'Core') {
+#    $WorkSheet = 0 # Core version has 0 based index for $Worksheets
+#} else {
+#    $WorkSheet = 1
+#}
 
 $TemporaryFolder = [IO.Path]::GetTempPath()
 
