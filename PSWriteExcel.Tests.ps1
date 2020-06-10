@@ -15,7 +15,8 @@ if ($null -eq (Get-Module -ListAvailable PSSharedGoods)) {
     Write-Warning "$ModuleName - Downloading PSSharedGoods from PSGallery"
     Install-Module -Name PSSharedGoods -Repository PSGallery -Force -Scope CurrentUser
 }
-Import-Module pssharedgoods -Force
+Import-Module PSSharedGoods -Force
+Import-Module $PSScriptRoot\PSWriteExcel.psd1 -Force
 
 $result = Invoke-Pester -Script $PSScriptRoot\Tests -EnableExit
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://dev.azure.com/evotecpl/PSWriteExcel/_build/latest?definitionId=3"><img src="https://dev.azure.com/evotecpl/PSWriteExcel/_apis/build/status/EvotecIT.PSWriteExcel"></a>
+  <a href="https://dev.azure.com/evotecpl/PSWriteExcel/_build/results?buildId=latest"><img src="https://dev.azure.com/evotecpl/PSWriteExcel/_apis/build/status/EvotecIT.PSWriteExcel"></a>
   <a href="https://www.powershellgallery.com/packages/PSWriteExcel"><img src="https://img.shields.io/powershellgallery/v/PSWriteExcel.svg"></a>
   <a href="https://www.powershellgallery.com/packages/PSWriteExcel"><img src="https://img.shields.io/powershellgallery/vpre/PSWriteExcel.svg?label=powershell%20gallery%20preview&colorB=yellow"></a>
   <a href="https://github.com/EvotecIT/PSWriteExcel"><img src="https://img.shields.io/github/license/EvotecIT/PSWriteExcel.svg"></a>
@@ -41,9 +41,12 @@ There are couple of more commands in play that may come useful. Feel free to exp
   - Fix for colors, Colors should limit output while typing
   - Added `Request-ExcelWorkSheetCalculation`
   - Added ability to add CellFormula to `Add-ExcelWorkSheetCell`
+  - Fix for `Transpose` in `ConvertTo-Excel`
+
 - 0.1.5 - 2020.01.17
-  - Merged Excelimo back into PSWriteExcel
-  - Merged all dependencies into PSWriteExcel - requires additional modules only for development like all my other modules
+  - Merged `Excelimo` back into `PSWriteExcel`
+  - Merged all dependencies into `PSWriteExcel` - requires additional modules only for development like all my other modules
+
 - 0.1.2 - 23.06.2019
   - Support for PSSharedGoods 0.0.79
   - Some speed improvments
