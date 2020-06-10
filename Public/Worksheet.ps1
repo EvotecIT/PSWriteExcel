@@ -49,5 +49,9 @@
         & $ScriptBlock -Parameters @ExcelWorkSheetParameters
     }
 }
+$ScriptBlockColors = {
+    param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
+    $Script:RGBColors.Keys | Where-Object { $_ -like "$wordToComplete*" }
+}
 
-Register-ArgumentCompleter -CommandName Worksheet -ParameterName TabColor -ScriptBlock { $Script:RGBColors.Keys }
+Register-ArgumentCompleter -CommandName Worksheet -ParameterName TabColor -ScriptBlock $ScriptBlockColors

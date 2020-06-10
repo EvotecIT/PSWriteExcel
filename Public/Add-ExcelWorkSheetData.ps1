@@ -180,7 +180,7 @@ function Add-ExcelWorksheetData {
                 Set-ExcelWorkSheetTableStyle -ExcelWorksheet $ExcelWorksheet -TableStyle $TableStyle -DataRange $ExcelWorksheet.Dimension -TableName $TableName
             }
             if ($TabColor) {
-                $ExcelWorksheet.TabColor = ConvertFrom-Color -Color $TabColor
+                $ExcelWorksheet.TabColor = ConvertFrom-Color -Color $TabColor -AsDrawingColor
             }
             #Write-Verbose 'Add-ExcelWorksheetData - Ending...'
             if ($Supress) { return } else { return $ExcelWorkSheet }
@@ -188,5 +188,9 @@ function Add-ExcelWorksheetData {
     }
 
 }
+$ScriptBlockColors = {
+    param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
+    $Script:RGBColors.Keys | Where-Object { $_ -like "$wordToComplete*" }
+}
 
-Register-ArgumentCompleter -CommandName Add-ExcelWorksheetData -ParameterName TabColor -ScriptBlock { $Script:RGBColors.Keys }
+Register-ArgumentCompleter -CommandName Add-ExcelWorksheetData -ParameterName TabColor -ScriptBlock $ScriptBlockColors
