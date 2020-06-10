@@ -7,7 +7,6 @@ function Get-ExcelWorkSheetCell {
         [bool] $Supress
     )
     if ($ExcelWorksheet) {
-        $Data = $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value
+        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value
     }
-    return $Data
 }

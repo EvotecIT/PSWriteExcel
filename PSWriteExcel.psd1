@@ -76,7 +76,8 @@
     'Get-ExcelTranslateFromR1C1', 'Get-ExcelTranslateToR1C1', 
     'Get-ExcelWorkSheet', 'Get-ExcelWorkSheetCell', 
     'Get-ExcelWorkSheetData', 'New-ExcelDocument', 
-    'Remove-ExcelWorksheet', 'Save-ExcelDocument', 'Set-ExcelProperties', 
+    'Remove-ExcelWorksheet', 'Request-ExcelWorkSheetCalculation', 
+    'Save-ExcelDocument', 'Set-ExcelProperties', 
     'Set-ExcelWorksheetAutoFilter', 'Set-ExcelWorksheetAutoFit', 
     'Set-ExcelWorkSheetCellStyleFont', 'Set-ExcelWorkSheetFreezePane', 
     'Set-ExcelWorkSheetTableStyle', 'Worksheet'

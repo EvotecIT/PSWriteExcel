@@ -2,7 +2,7 @@ function Get-ExcelWorkSheet {
     [OutputType([OfficeOpenXml.ExcelWorksheet])]
     [cmdletBinding()]
     param (
-        [OfficeOpenXml.ExcelPackage]  $ExcelDocument,
+        [OfficeOpenXml.ExcelPackage] $ExcelDocument,
         [string] $Name,
         [nullable[int]] $Index,
         [switch] $All
@@ -14,11 +14,11 @@ function Get-ExcelWorkSheet {
         }
         if ($All) {
             $Data = $ExcelDocument.Workbook.Worksheets
-        } elseif ($Name -or $Index -ne $null) {
+        } elseif ($Name -or $null -ne $Index) {
             if ($Name) {
-                $Data = $ExcelDocument.Workbook.Worksheets | Where { $_.Name -eq $Name }
+                $Data = $ExcelDocument.Workbook.Worksheets | Where-Object { $_.Name -eq $Name }
             }
-            if ($Index -ne $null) {
+            if ($null -ne $Index) {
                 if ($PSEdition -ne 'Core') {
                     $Index = $Index + 1
                 }

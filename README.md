@@ -37,6 +37,10 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 ## Changelog
 
+- 0.1.6 - 2020.06.10
+  - Fix for colors, Colors should limit output while typing
+  - Added `Request-ExcelWorkSheetCalculation`
+  - Added ability to add CellFormula to `Add-ExcelWorkSheetCell`
 - 0.1.5 - 2020.01.17
   - Merged Excelimo back into PSWriteExcel
   - Merged all dependencies into PSWriteExcel - requires additional modules only for development like all my other modules
