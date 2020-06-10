@@ -1,7 +1,4 @@
-﻿#Requires -Modules Pester
-Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force #-Verbose
-
-### Preparing Data Start
+﻿### Preparing Data Start
 $myitems0 = @(
     [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover" },
     [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover" },
@@ -56,24 +53,24 @@ $Object3 = Get-PSDrive | Where-Object { $_.Provider -like '*Registry*' -or $_.Pr
 $Object4 = Get-PSDrive | Where-Object { $_.Provider -like '*Registry*' -or $_.Provider -like '*Environment*' -or $_.Provider -like '*FileSystem*' } | Select-Object * -First 1
 
 $obj = New-Object System.Object
-$obj | Add-Member -type NoteProperty -name Name -Value "Ryan_PC"
-$obj | Add-Member -type NoteProperty -name Manufacturer -Value "Dell"
-$obj | Add-Member -type NoteProperty -name ProcessorSpeed -Value "3 Ghz"
-$obj | Add-Member -type NoteProperty -name Memory -Value "6 GB"
+$obj | Add-Member -type NoteProperty -Name Name -Value "Ryan_PC"
+$obj | Add-Member -type NoteProperty -Name Manufacturer -Value "Dell"
+$obj | Add-Member -type NoteProperty -Name ProcessorSpeed -Value "3 Ghz"
+$obj | Add-Member -type NoteProperty -Name Memory -Value "6 GB"
 
 
 $myObject2 = New-Object System.Object
-$myObject2 | Add-Member -type NoteProperty -name Name -Value "Doug_PC"
-$myObject2 | Add-Member -type NoteProperty -name Manufacturer -Value "HP"
-$myObject2 | Add-Member -type NoteProperty -name ProcessorSpeed -Value "2.6 Ghz"
-$myObject2 | Add-Member -type NoteProperty -name Memory -Value "4 GB"
+$myObject2 | Add-Member -type NoteProperty -Name Name -Value "Doug_PC"
+$myObject2 | Add-Member -type NoteProperty -Name Manufacturer -Value "HP"
+$myObject2 | Add-Member -type NoteProperty -Name ProcessorSpeed -Value "2.6 Ghz"
+$myObject2 | Add-Member -type NoteProperty -Name Memory -Value "4 GB"
 
 
 $myObject3 = New-Object System.Object
-$myObject3 | Add-Member -type NoteProperty -name Name -Value "Julie_PC"
-$myObject3 | Add-Member -type NoteProperty -name Manufacturer -Value "Compaq"
-$myObject3 | Add-Member -type NoteProperty -name ProcessorSpeed -Value "2.0 Ghz"
-$myObject3 | Add-Member -type NoteProperty -name Memory -Value "2.5 GB"
+$myObject3 | Add-Member -type NoteProperty -Name Name -Value "Julie_PC"
+$myObject3 | Add-Member -type NoteProperty -Name Manufacturer -Value "Compaq"
+$myObject3 | Add-Member -type NoteProperty -Name ProcessorSpeed -Value "2.0 Ghz"
+$myObject3 | Add-Member -type NoteProperty -Name Memory -Value "2.5 GB"
 
 $myArray1 = @($obj, $myobject2, $myObject3)
 $myArray2 = @($obj)
@@ -93,28 +90,6 @@ $InvoiceDataOrdered1 += $InvoiceEntry7
 $InvoiceDataOrdered2 = @()
 $InvoiceDataOrdered2 += $InvoiceEntry7
 $InvoiceDataOrdered2 += $InvoiceEntry8
-<# Useful to display types
-$Array = @()
-$Array += Get-ObjectType -Object $myitems0  -ObjectName '$myitems0'
-$Array += Get-ObjectType -Object $myitems1  -ObjectName '$myitems1'
-$Array += Get-ObjectType -Object $myitems2 -ObjectName '$myitems2'
-$Array += Get-ObjectType -Object $InvoiceEntry1 -ObjectName '$InvoiceEntry1'
-$Array += Get-ObjectType -Object $InvoiceData1  -ObjectName '$InvoiceData1'
-$Array += Get-ObjectType -Object $InvoiceData2  -ObjectName '$InvoiceData2'
-$Array += Get-ObjectType -Object $InvoiceData3  -ObjectName '$InvoiceData3'
-$Array += Get-ObjectType -Object $InvoiceData4  -ObjectName '$InvoiceData4'
-$Array += Get-ObjectType -Object $Object1  -ObjectName '$Object1'
-$Array += Get-ObjectType -Object $Object2  -ObjectName '$Object2'
-$Array += Get-ObjectType -Object $Object3  -ObjectName '$Object3'
-$Array += Get-ObjectType -Object $Object4  -ObjectName '$Object4'
-$Array += Get-ObjectType -Object $obj -ObjectName '$obj'
-$Array += Get-ObjectType -Object $myArray1 -ObjectName '$myArray1'
-$Array += Get-ObjectType -Object $myArray2 -ObjectName '$myArray2'
-$Array += Get-ObjectType -Object $InvoiceEntry7 -ObjectName '$InvoiceEntry7'
-$Array += Get-ObjectType -Object $InvoiceDataOrdered1 -ObjectName '$InvoiceDataOrdered1'
-$Array += Get-ObjectType -Object $InvoiceDataOrdered2 -ObjectName '$InvoiceDataOrdered2'
-$Array | Format-Table -AutoSize
-#>
 
 if ($PSEdition -eq 'Core') {
     $WorkSheet = 0 # Core version has 0 based index for $Worksheets
@@ -123,6 +98,38 @@ if ($PSEdition -eq 'Core') {
 }
 
 $TemporaryFolder = [IO.Path]::GetTempPath()
+
+$PSDefaultParameterValues = @{
+    "It:TestCases" = @{
+        InvoiceDataOrdered2 = $InvoiceDataOrdered2
+        InvoiceDataOrdered1 = $InvoiceDataOrdered1
+        InvoiceEntry8       = $InvoiceEntry8
+        InvoiceEntry7       = $InvoiceEntry7
+        myArray1            = $myArray1
+        myArray2            = $myArray2
+        myObject3           = $myObject3
+        myObject2           = $myObject2
+        Object1             = $Object1
+        Object2             = $Object2
+        Object3             = $Object3
+        Object4             = $Object4
+        InvoiceData4        = $InvoiceData4
+        InvoiceData3        = $InvoiceData3
+        InvoiceData2        = $InvoiceData2
+        InvoiceData1        = $InvoiceData1
+        InvoiceEntry1       = $InvoiceEntry1
+        InvoiceEntry2       = $InvoiceEntry2
+        InvoiceEntry3       = $InvoiceEntry3
+        InvoiceEntry4       = $InvoiceEntry4
+        InvoiceEntry5       = $InvoiceEntry5
+        myitems0            = $myitems0
+        myitems1            = $myitems1
+        myitems2            = $myitems2
+        obj                 = $obj
+        TemporaryFolder     = $TemporaryFolder
+        WorkSheet           = $WorkSheet
+    }
+}
 
 Describe 'ConvertTo-Excel - Should deliver same results as Format-Table -Autosize (via pipeline)' {
     ## Cleanup of tests

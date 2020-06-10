@@ -1,6 +1,3 @@
-#Requires -Modules Pester
-Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force #-Verbose
-
 $myitems0 = @(
     [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover" },
     [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover" },
@@ -8,13 +5,15 @@ $myitems0 = @(
     }
 )
 
-#if ($PSEdition -eq 'Core') {
-#    $WorkSheet = 0 # Core version has 0 based index for $Worksheets
-#} else {
-#    $WorkSheet = 1
-#}
-
 $TemporaryFolder = [IO.Path]::GetTempPath()
+
+$PSDefaultParameterValues = @{
+    "It:TestCases" = @{
+        myitems0            = $myitems0
+        TemporaryFolder     = $TemporaryFolder
+        WorkSheet           = $WorkSheet
+    }
+}
 
 Describe 'Get-ExcelProperties - Getting Excel Properties' {
     It 'Using Get-ExcelProperties - Getting Author, Title and Subject Properties should be readable' {

@@ -1,6 +1,3 @@
-#Requires -Modules Pester
-Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force #-Verbose
-
 $myitems0 = @(
     [pscustomobject]@{name = "Joe"; age = 32; info = "Cat lover" },
     [pscustomobject]@{name = "Sue"; age = 29; info = "Dog lover" },
@@ -15,6 +12,14 @@ if ($PSEdition -eq 'Core') {
 }
 
 $TemporaryFolder = [IO.Path]::GetTempPath()
+
+$PSDefaultParameterValues = @{
+    "It:TestCases" = @{
+        myitems0            = $myitems0
+        TemporaryFolder     = $TemporaryFolder
+        WorkSheet           = $WorkSheet
+    }
+}
 
 Describe 'Set-ExcelProperties - Setting Excel Properties' {
     It 'Using Set-ExcelProperties - Setting Author, Title and Subject Properties should work' {
