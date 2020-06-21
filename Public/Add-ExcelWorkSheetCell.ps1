@@ -8,7 +8,7 @@ function Add-ExcelWorkSheetCell {
         [string] $CellFormula
     )
     if ($ExcelWorksheet) {
-        if ($CellValue) {
+        if (-not $CellFormula) {
             Switch ($CellValue) {
                 { $_ -is [PSCustomObject] } {
                     $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue

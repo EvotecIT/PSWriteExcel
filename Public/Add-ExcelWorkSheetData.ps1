@@ -16,7 +16,7 @@ function Add-ExcelWorksheetData {
         [alias('Name', 'WorksheetName')][string] $ExcelWorksheetName,
         [alias('Rotate', 'RotateData', 'TransposeColumnsRows', 'TransposeData')][switch] $Transpose,
         [ValidateSet("ASC", "DESC", "NONE")][string] $TransposeSort = 'NONE',
-        [switch] $PreScanHeaders, # this feature scans properties of an object for all objects it contains to make sure all headers are there
+        [alias('PreScanHeaders')][switch] $AllProperties, # this feature scans properties of an object for all objects it contains to make sure all headers are there
         [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
         [string] $TableName,
         [string] $TabColor,
@@ -90,7 +90,7 @@ function Add-ExcelWorksheetData {
                 }
 #>
 
-                $Data = Format-PSTable -Object $DataTable -ExcludeProperty $ExcludeProperty -PreScanHeaders:$PreScanHeaders # -SkipTitle:$NoHeader
+                $Data = Format-PSTable -Object $DataTable -ExcludeProperty $ExcludeProperty -PreScanHeaders:$AllProperties.IsPresent # -SkipTitle:$NoHeader
                 $WorksheetHeaders = $Data[0] # Saving Header information for later use
                 #Write-Verbose "Add-ExcelWorksheetData - Headers: $($WorksheetHeaders -join ', ') - Data Count: $($Data.Count)"
                 if ($NoHeader) {

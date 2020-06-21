@@ -17,7 +17,7 @@ function ConvertTo-Excel {
         [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
         [string] $TableName,
         [switch] $OpenWorkBook,
-        [switch] $PreScanHeaders
+        [alias('PreScanHeaders')][switch] $AllProperties
     )
     Begin {
         $Fail = $false
@@ -59,7 +59,7 @@ function ConvertTo-Excel {
             -TransposeSort $TransposeSort `
             -Option $Option `
             -TableStyle $TableStyle `
-            -TableName $TableName -PreScanHeaders:$PreScanHeaders -Supress $true
+            -TableName $TableName -AllProperties:$AllProperties.IsPresent -Supress $true
         Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook:$OpenWorkBook
     }
 }

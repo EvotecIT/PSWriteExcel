@@ -37,6 +37,8 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 ## Changelog
 
+- 0.1.7 - 2020.06.21
+  - Fix for not displaying $False and few other values
 - 0.1.6 - 2020.06.10
   - Fix for colors, Colors should limit output while typing
   - Added `Request-ExcelWorkSheetCalculation`
