@@ -1,14 +1,14 @@
 function Add-ExcelWorkSheetCell {
     [CmdletBinding()]
     param(
-        [OfficeOpenXml.ExcelWorksheet]  $ExcelWorksheet,
+        [OfficeOpenXml.ExcelWorksheet] $ExcelWorksheet,
         [int] $CellRow,
         [int] $CellColumn,
         [Object] $CellValue,
         [string] $CellFormula
     )
     if ($ExcelWorksheet) {
-        if (-not $CellFormula) {
+        if ($PSBoundParameters.Keys -contains 'CellValue') {
             Switch ($CellValue) {
                 { $_ -is [PSCustomObject] } {
                     $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue
@@ -38,7 +38,7 @@ function Add-ExcelWorkSheetCell {
                     $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue
                 }
             }
-        } elseif ($CellFormula) {
+        } elseif ($PSBoundParameters.Keys -contains 'CellFormula') {
             # This makes sure = is removed as it's bad idea but Excel users may use it for whatever reason
             if ($CellFormula.StartsWith('=')) {
                 $CellFormula = $CellFormula.Substring(1)
