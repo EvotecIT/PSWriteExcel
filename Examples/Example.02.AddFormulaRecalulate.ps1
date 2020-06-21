@@ -19,4 +19,4 @@ Request-ExcelWorkSheetCalculation -ExcelWorksheet $ExcelWorkSheet
 # This gets data from it, to confirm recalculation worked
 Get-ExcelWorkSheetCell -CellRow 8 -CellColumn 5 -ExcelWorksheet $ExcelWorkSheet
 
-Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath #-OpenWorkBook
+Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook
