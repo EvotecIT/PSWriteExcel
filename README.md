@@ -37,6 +37,8 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 ## Changelog
 
+- 0.1.9 - 2020.07.30
+  - Added verification for cell lenght to prevent errors. Cell will be trimmed to 32767 chars when lenght exceeds that.
 - 0.1.8 - 2020.06.21
   - Small improvement
 - 0.1.7 - 2020.06.21
