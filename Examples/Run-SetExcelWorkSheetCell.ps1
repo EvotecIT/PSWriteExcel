@@ -1,4 +1,4 @@
-Import-Module PSWriteExcel -Force
+Import-Module $PSScriptRoot\..\PSWriteExcel.psd1 -Force
 
 $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-SetExcelWorkSheetCell.xlsx"
 
