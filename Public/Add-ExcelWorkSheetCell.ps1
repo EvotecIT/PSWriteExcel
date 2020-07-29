@@ -15,7 +15,13 @@ function Add-ExcelWorkSheetCell {
                     break
                 }
                 { $_ -is [Array] } {
-                    $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue -join [System.Environment]::NewLine
+                    $Value = $CellValue -join [System.Environment]::NewLine
+                    if ($Value.Length -gt 32767) {
+                        Write-Warning "Add-ExcelWorkSheetCell - Triming cell lenght from $($CellValue.Length) to 32767 as maximum limit to prevent errors (Worksheet: $($ExcelWorksheet.Name) Row: $CellRow Column: $CellColumn)."
+                        # We need to trim value as it's too long for a single cell
+                        $Value = $Value.Substring(0, 32767)
+                    }
+                    $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $Value
                     $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.WrapText = $true
                     break
                 }
@@ -35,6 +41,11 @@ function Add-ExcelWorkSheetCell {
                     break
                 }
                 Default {
+                    if ($CellValue.Length -gt 32767) {
+                        # We need to trim value as it's too long for a single cell
+                        Write-Warning "Add-ExcelWorkSheetCell - Triming cell lenght from $($CellValue.Length) to 32767 as maximum limit to prevent errors (Worksheet: $($ExcelWorksheet.Name) Row: $CellRow Column: $CellColumn)."
+                        $CellValue = $CellValue.Substring(0, 32767)
+                    }
                     $ExcelWorksheet.Cells[$CellRow, $CellColumn].Value = $CellValue
                 }
             }
