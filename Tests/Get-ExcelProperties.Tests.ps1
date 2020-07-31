@@ -89,4 +89,15 @@ Describe 'Get-ExcelProperties - Getting Excel Properties' {
 
         Remove-Item -Path $FilePath -Confirm:$false -ErrorAction SilentlyContinue
     }
+    It 'Using Get-ExcelProperties - Previous "Supress" parameter should still work on Add-ExcelWorkSheet and Add-ExcelWorkSheetData' {
+        $Excel = New-ExcelDocument
+        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Supress $False -Option 'Replace'
+        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+        Set-ExcelProperties -ExcelDocument $Excel -Author 'Przemyslaw Klys' -Title 'PSWriteExcel Set-Properties' -Subject 'PSWriteExcel'
+
+        $Properties = Get-ExcelProperties -ExcelDocument $Excel
+        $Properties.Author | Should -Be 'Przemyslaw Klys'
+        $Properties.Title | Should -Be 'PSWriteExcel Set-Properties'
+        $Properties.Subject | Should -Be 'PSWriteExcel'
+    }    
 }
