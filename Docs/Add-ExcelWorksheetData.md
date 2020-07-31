@@ -17,7 +17,7 @@ Add-ExcelWorksheetData [[-ExcelDocument] <ExcelPackage>] [[-ExcelWorksheet] <Obj
  [[-Option] <String>] [[-StartRow] <Int32>] [[-StartColumn] <Int32>] [-AutoFit] [-AutoFilter] [-FreezeTopRow]
  [-FreezeFirstColumn] [-FreezeTopRowFirstColumn] [[-FreezePane] <Int32[]>] [[-ExcelWorksheetName] <String>]
  [-Transpose] [[-TransposeSort] <String>] [-PreScanHeaders] [[-TableStyle] <TableStyles>]
- [[-TableName] <String>] [[-Supress] <Boolean>] [<CommonParameters>]
+ [[-TableName] <String>] [[-Suppress] <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -245,8 +245,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Supress
-{{Fill Supress Description}}
+### -Suppress
+{{Fill Suppress Description}}
 
 ```yaml
 Type: Boolean

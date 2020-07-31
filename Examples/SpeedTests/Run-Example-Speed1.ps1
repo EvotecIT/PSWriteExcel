@@ -13,6 +13,6 @@ Measure-Collection -Name 'ConvertTo-Excel' -ScriptBlock {
 $FilePath = "$PSScriptRoot\PSWriteExcel-Example-Test.xlsx"
 Measure-Collection -Name 'Add-ExcelWorkSheet' -ScriptBlock {
     $Excel = New-ExcelDocument -Verbose
-    Add-ExcelWorksheetData -ExcelDocument $Excel -Supress $True -DataTable $Process -ExcelWorksheetName 'Test' -Verbose
+    Add-ExcelWorksheetData -ExcelDocument $Excel -Suppress $True -DataTable $Process -ExcelWorksheetName 'Test' -Verbose
     Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath #-OpenWorkBook
 }

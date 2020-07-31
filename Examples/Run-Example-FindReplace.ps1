@@ -19,4 +19,4 @@ $Cells1 = Find-ExcelDocumentText -FilePath $FilePath -Find 'evotec' -Replace -Re
 $Cells2 = Find-ExcelDocumentText -FilePath $FilePath -Find 'evotec' -Replace -ReplaceWith 'somethingelse' -FilePathTarget $FilePathOutput2 -OpenWorkBook:$false -Regex
 
 # Do not display found cells, replace evotec with somethingelse but don't check for case sensitivity. It will replace evotec, Evotec. Finally save it to file and open workbook.
-Find-ExcelDocumentText -FilePath $FilePath -Find 'evotec' -Replace -ReplaceWith 'somethingelse' -FilePathTarget $FilePathOutput2 -OpenWorkBook -Regex -Supress $true
+Find-ExcelDocumentText -FilePath $FilePath -Find 'evotec' -Replace -ReplaceWith 'somethingelse' -FilePathTarget $FilePathOutput2 -OpenWorkBook -Regex -Suppress $true

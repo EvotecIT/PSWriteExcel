@@ -14,7 +14,7 @@ schema: 2.0.0
 
 ```
 Find-ExcelDocumentText [[-FilePath] <String>] [[-FilePathTarget] <String>] [[-Find] <String>] [-Replace]
- [[-ReplaceWith] <String>] [-Regex] [-OpenWorkBook] [[-Supress] <Boolean>] [<CommonParameters>]
+ [[-ReplaceWith] <String>] [-Regex] [-OpenWorkBook] [[-Suppress] <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -136,8 +136,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Supress
-{{Fill Supress Description}}
+### -Suppress
+{{Fill Suppress Description}}
 
 ```yaml
 Type: Boolean

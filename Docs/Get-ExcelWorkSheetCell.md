@@ -14,7 +14,7 @@ schema: 2.0.0
 
 ```
 Get-ExcelWorkSheetCell [[-ExcelWorksheet] <ExcelWorksheet>] [[-CellRow] <Int32>] [[-CellColumn] <Int32>]
- [[-Supress] <Boolean>] [<CommonParameters>]
+ [[-Suppress] <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -76,8 +76,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Supress
-{{Fill Supress Description}}
+### -Suppress
+{{Fill Suppress Description}}
 
 ```yaml
 Type: Boolean

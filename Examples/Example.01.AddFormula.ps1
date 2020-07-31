@@ -3,7 +3,7 @@
 $FilePath = "$Env:USERPROFILE\Desktop\PSWriteExcel-Example-Test.xlsx"
 
 $Excel = New-ExcelDocument -Verbose
-$ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 10' -Supress $False -Option 'Replace'
+$ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 10' -Suppress $False -Option 'Replace'
 
 Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorkSheet -CellRow 1 -CellColumn 5 -CellValue 5
 Add-ExcelWorkSheetCell -ExcelWorksheet $ExcelWorkSheet -CellRow 2 -CellColumn 5 -CellValue 5
