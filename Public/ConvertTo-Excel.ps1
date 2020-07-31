@@ -59,7 +59,7 @@ function ConvertTo-Excel {
             -TransposeSort $TransposeSort `
             -Option $Option `
             -TableStyle $TableStyle `
-            -TableName $TableName -AllProperties:$AllProperties.IsPresent -Supress $true
+            -TableName $TableName -AllProperties:$AllProperties.IsPresent -Suppress $true
         Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath -OpenWorkBook:$OpenWorkBook
     }
 }

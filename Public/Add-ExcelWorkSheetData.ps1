@@ -20,7 +20,7 @@ function Add-ExcelWorksheetData {
         [alias('TableStyles')][nullable[OfficeOpenXml.Table.TableStyles]] $TableStyle,
         [string] $TableName,
         [string] $TabColor,
-        [bool] $Supress
+        [alias('Supress')][bool] $Suppress
     )
     Begin {
         $FirstRun = $True
@@ -183,7 +183,7 @@ function Add-ExcelWorksheetData {
                 $ExcelWorksheet.TabColor = ConvertFrom-Color -Color $TabColor -AsDrawingColor
             }
             #Write-Verbose 'Add-ExcelWorksheetData - Ending...'
-            if ($Supress) { return } else { return $ExcelWorkSheet }
+            if ($Suppress) { return } else { return $ExcelWorkSheet }
         }
     }
 
