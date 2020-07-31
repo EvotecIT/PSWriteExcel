@@ -18,8 +18,8 @@ $PSDefaultParameterValues = @{
 Describe 'Get-ExcelProperties - Getting Excel Properties' {
     It 'Using Get-ExcelProperties - Getting Author, Title and Subject Properties should be readable' {
         $Excel = New-ExcelDocument
-        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Supress $False -Option 'Replace'
-        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Suppress $False -Option 'Replace'
+        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Suppress $True
         Set-ExcelProperties -ExcelDocument $Excel -Author 'Przemyslaw Klys' -Title 'PSWriteExcel Set-Properties' -Subject 'PSWriteExcel'
 
         $Properties = Get-ExcelProperties -ExcelDocument $Excel
@@ -32,8 +32,8 @@ Describe 'Get-ExcelProperties - Getting Excel Properties' {
         [DateTime] $Modified = Get-Date -Year '2018' -Month '09' -Day '27' -Hour 0 -Minute 0 -Second 0 -Millisecond 0
 
         $Excel = New-ExcelDocument
-        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Supress $False -Option 'Replace'
-        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Suppress $False -Option 'Replace'
+        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Suppress $True
         Set-ExcelProperties -ExcelDocument $Excel -Created $Created -Modified $Modified -Category 'Excel'
 
         $Properties = Get-ExcelProperties -ExcelDocument $Excel
@@ -46,8 +46,8 @@ Describe 'Get-ExcelProperties - Getting Excel Properties' {
         [DateTime] $Modified = Get-Date -Year '2018' -Month '09' -Day '27' -Hour 0 -Minute 0 -Second 0 -Millisecond 0
 
         $Excel = New-ExcelDocument
-        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Supress $False -Option 'Replace'
-        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Suppress $False -Option 'Replace'
+        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Suppress $True
         Set-ExcelProperties -ExcelDocument $Excel -Application 'Test 1' -AppVersion 'Test 2' -Keywords 'My key word' -LastModifiedBy 'Przemyslaw Klys' -LastPrinted 'Evotec' -LinksUpToDate $false -Manager 'Przemyslaw Klys' -ScaleCrop $true -SharedDoc $false -Status 'My status'
 
         $Properties = Get-ExcelProperties -ExcelDocument $Excel
@@ -69,8 +69,8 @@ Describe 'Get-ExcelProperties - Getting Excel Properties' {
         $FilePath = [IO.Path]::Combine($TemporaryFolder, "Get-ExpelProperties-Test.xlsx")
 
         $Excel = New-ExcelDocument
-        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Supress $False -Option 'Replace'
-        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Supress $True
+        $ExcelWorkSheet = Add-ExcelWorkSheet -ExcelDocument $Excel -WorksheetName 'Test 1' -Suppress $False -Option 'Replace'
+        Add-ExcelWorksheetData -ExcelWorksheet $ExcelWorkSheet -DataTable $myitems0 -AutoFit -AutoFilter -Suppress $True
         Set-ExcelProperties -ExcelDocument $Excel -Application 'Test 1' -AppVersion 'Test 2' -Keywords 'My key word' -LastModifiedBy 'Przemyslaw Klys' -LastPrinted 'Evotec' -LinksUpToDate $false -Manager 'Przemyslaw Klys' -ScaleCrop $true -SharedDoc $false -Status 'My status'
         Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePath
 
