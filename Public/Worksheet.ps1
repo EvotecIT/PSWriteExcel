@@ -15,14 +15,14 @@
             [string] $Name,
             [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Replace',
             [string] $TabColor,
-            [bool] $Supress,
+            [alias('Supress')][bool] $Suppress,
             [switch] $AutoFilter,
             [switch] $AutoFit
         )
         $addExcelWorkSheetDataSplat = @{
             DataTable          = $DataTable
             TabColor           = $TabColor
-            Supress            = $Supress
+            Suppress            = $Suppress
             Option             = $Option
             ExcelDocument      = $ExcelDocument
             ExcelWorksheetName = $Name
@@ -34,7 +34,7 @@
     $ExcelWorkSheetParameters = [ordered] @{
         DataTable     = $DataTable
         TabColor      = $TabColor
-        Supress       = $true
+        Suppress       = $true
         Option        = $Option
         ExcelDocument = $Script:Excel.ExcelDocument
         Name          = $Name

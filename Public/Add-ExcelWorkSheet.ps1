@@ -4,7 +4,7 @@ function Add-ExcelWorkSheet {
         [OfficeOpenXml.ExcelPackage]  $ExcelDocument,
         [alias('Name')][string] $WorksheetName,
         [ValidateSet("Replace", "Skip", "Rename")][string] $Option = 'Skip',
-        [bool] $Supress
+        [alias('Supress')][bool] $Suppress
     )
     $WorksheetName = $WorksheetName.Trim()
     if ($WorksheetName.Length -eq 0) {
@@ -25,11 +25,11 @@ function Add-ExcelWorkSheet {
         } elseif ($Option -eq 'Replace') {
             Write-Verbose "Add-ExcelWorkSheet - WorksheetName: '$WorksheetName' - exists. Replacing worksheet with empty worksheet."
             Remove-ExcelWorksheet -ExcelDocument $ExcelDocument -ExcelWorksheet $PreviousWorksheet
-            $Data = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -WorksheetName $WorksheetName -Option $Option -Supress $False
+            $Data = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -WorksheetName $WorksheetName -Option $Option -Suppress $False
         } elseif ($Option -eq 'Rename') {
             Write-Verbose "Add-ExcelWorkSheet - Worksheet: '$WorksheetName' already exists. Renaming worksheet to random value."
             $WorksheetName = Get-RandomStringName -Size 31
-            $Data = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -WorksheetName $WorksheetName -Option $Option -Supress $False
+            $Data = Add-ExcelWorkSheet -ExcelDocument $ExcelDocument -WorksheetName $WorksheetName -Option $Option -Suppress $False
             Write-Verbose "Add-ExcelWorkSheet - New worksheet name $WorksheetName"
         } else {
             #Write-Verbose "Future use..."
@@ -46,5 +46,5 @@ function Add-ExcelWorkSheet {
         #Write-Warning "Add-ExcelWorkSheet - Maximum amount of chars is 31 for worksheet name"
         #}
     }
-    if ($Supress) { return } else { return $data }
+    if ($Suppress) { return } else { return $data }
 }

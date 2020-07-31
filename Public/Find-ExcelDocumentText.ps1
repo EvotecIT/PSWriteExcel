@@ -8,7 +8,7 @@ function Find-ExcelDocumentText {
         [string] $ReplaceWith,
         [switch] $Regex,
         [switch] $OpenWorkBook,
-        [bool] $Supress
+        [alias('Supress')][bool] $Suppress
     )
     $Excel = Get-ExcelDocument -Path $FilePath
     if ($Excel) {
@@ -43,7 +43,7 @@ function Find-ExcelDocumentText {
         if ($Replace) {
             Save-ExcelDocument -ExcelDocument $Excel -FilePath $FilePathTarget -OpenWorkBook:$OpenWorkBook
         }
-        if ($Supress) {
+        if ($Suppress) {
             return
         } else {
             return $Addresses
