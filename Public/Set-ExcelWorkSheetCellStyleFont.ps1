@@ -1,31 +1,32 @@
-function Set-ExcelWorkSheetCellStyleFont {
+function Set-ExcelWorkSheetCellStyle {
+    [alias('Set-ExcelWorkSheetCellStyleFont')]
     [CmdletBinding()]
     param(
         [OfficeOpenXml.ExcelWorksheet] $ExcelWorksheet,
         [int] $CellRow,
         [int] $CellColumn,
-        [nullable[bool]] $Bold,
-        [nullable]$Color,
-        $Family,
-        $Italic,
-        [string] $Name,
-        $Scheme,
-        [nullable[int]] $Size,
-        $Strike,
-        $UnderLine,
-        # [underlineType] $UnderLineType,
-        $VerticalAlign
+        [alias('FontName')][string] $Name,
+        [switch] $Bold,
+        [System.Drawing.KnownColor] $Color,
+        [switch] $Italic,
+        [int] $Size,
+        [switch] $Strike,
+        [switch] $UnderLine,
+        [OfficeOpenXml.Style.ExcelUnderLineType] $UnderLineType,
+        [OfficeOpenXml.Style.ExcelVerticalAlignment] $VerticalAlignment,
+        [OfficeOpenXml.Style.ExcelFillStyle] $PatternType = [OfficeOpenXml.Style.ExcelFillStyle]::Solid
     )
     if (-not $ExcelWorksheet) { return }
 
+    if ($PatternType) {
+        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Fill.PatternType = $PatternType
+    }
     if ($Bold) {
-        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Bold = $Bold
+        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Bold = $Bold.IsPresent
     }
     if ($Color) {
-        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Color = $Color
-    }
-    if ($Family) {
-        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Family = $Family
+        $DrawingColor = [System.Drawing.Color]::FromKnownColor($Color)
+        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Fill.BackgroundColor.SetColor($DrawingColor)
     }
     if ($Italic) {
         $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Italic = $Italic
@@ -33,22 +34,19 @@ function Set-ExcelWorkSheetCellStyleFont {
     if ($Name) {
         $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Name = $Name
     }
-    if ($Scheme) {
-        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Scheme = $Scheme
-    }
     if ($Size) {
         $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Size = $Size
     }
     if ($Strike) {
         $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.Strike = $Strike
     }
-    # if ($UnderLine) {
-    #     $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.UnderLine = $UnderLine
-    # }
+    if ($UnderLine) {
+        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.UnderLine = $UnderLine
+    }
     if ($UnderLineType) {
         $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.UnderLineType = $UnderLineType
     }
     if ($VerticalAlign) {
-        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.VerticalAlign = $VerticalAlign
+        $ExcelWorksheet.Cells[$CellRow, $CellColumn].Style.Font.VerticalAlign = $VerticalAlignment
     }
 }
