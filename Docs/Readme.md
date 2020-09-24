@@ -56,6 +56,9 @@ Locale: {{ Update Locale }}
 ### [Remove-ExcelWorksheet](Remove-ExcelWorksheet.md)
 {{Fill in the Synopsis}}
 
+### [Request-ExcelWorkSheetCalculation](Request-ExcelWorkSheetCalculation.md)
+{{ Fill in the Synopsis }}
+
 ### [Save-ExcelDocument](Save-ExcelDocument.md)
 {{Fill in the Synopsis}}
 
@@ -68,8 +71,8 @@ Following function allows setting properties for Excel Workbook. It works with s
 ### [Set-ExcelWorksheetAutoFit](Set-ExcelWorksheetAutoFit.md)
 {{Fill in the Synopsis}}
 
-### [Set-ExcelWorkSheetCellStyleFont](Set-ExcelWorkSheetCellStyleFont.md)
-{{Fill in the Synopsis}}
+### [Set-ExcelWorkSheetCellStyle](Set-ExcelWorkSheetCellStyle.md)
+{{ Fill in the Synopsis }}
 
 ### [Set-ExcelWorkSheetFreezePane](Set-ExcelWorkSheetFreezePane.md)
 {{Fill in the Synopsis}}
