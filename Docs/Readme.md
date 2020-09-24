@@ -74,3 +74,6 @@ Following function allows setting properties for Excel Workbook. It works with s
 ### [Set-ExcelWorkSheetFreezePane](Set-ExcelWorkSheetFreezePane.md)
 {{Fill in the Synopsis}}
 
+### [Set-ExcelWorkSheetTableStyle](Set-ExcelWorkSheetTableStyle.md)
+{{Fill in the Synopsis}}
+

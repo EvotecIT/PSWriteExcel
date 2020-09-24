@@ -37,6 +37,8 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 ## Changelog
 
+- 0.1.11 - 2020.09.24
+  - `Set-ExcelWorkSheetCellStyle` is now usable, it wasn't even half working before.
 - 0.1.10 - 2020.07.31
   - Fix misspelling of "suppress" as "supress" (finally!) - tnx natescherer [#7](https://github.com/EvotecIT/PSWriteExcel/pull/7)
 - 0.1.9 - 2020.07.30

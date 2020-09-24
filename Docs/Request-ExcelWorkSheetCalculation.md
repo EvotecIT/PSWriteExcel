@@ -5,20 +5,30 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-ExcelWorkSheetFreezePane
+# Request-ExcelWorkSheetCalculation
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
+### ExcelWorkSheetName (Default)
 ```
-Set-ExcelWorkSheetFreezePane [[-ExcelWorksheet] <ExcelWorksheet>] [-FreezeTopRow] [-FreezeFirstColumn]
- [-FreezeTopRowFirstColumn] [[-FreezePane] <Int32[]>] [<CommonParameters>]
+Request-ExcelWorkSheetCalculation -Excel <ExcelPackage> [-Name <String>] [<CommonParameters>]
+```
+
+### ExcelWorkSheet
+```
+Request-ExcelWorkSheetCalculation [-ExcelWorksheet <ExcelWorksheet>] [<CommonParameters>]
+```
+
+### ExcelWorkSheetIndex
+```
+Request-ExcelWorkSheetCalculation -Excel <ExcelPackage> [-Index <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
@@ -31,27 +41,27 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
+### -Excel
+{{ Fill Excel Description }}
+
+```yaml
+Type: ExcelPackage
+Parameter Sets: ExcelWorkSheetName, ExcelWorkSheetIndex
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ExcelWorksheet
-{{Fill ExcelWorksheet Description}}
+{{ Fill ExcelWorksheet Description }}
 
 ```yaml
 Type: ExcelWorksheet
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 0
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -FreezeFirstColumn
-{{Fill FreezeFirstColumn Description}}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: ExcelWorkSheet
 Aliases:
 
 Required: False
@@ -61,27 +71,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FreezePane
-{{Fill FreezePane Description}}
+### -Index
+{{ Fill Index Description }}
 
 ```yaml
-Type: Int32[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -FreezeTopRow
-{{Fill FreezeTopRow Description}}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
+Type: Int32
+Parameter Sets: ExcelWorkSheetIndex
 Aliases:
 
 Required: False
@@ -91,12 +86,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FreezeTopRowFirstColumn
-{{Fill FreezeTopRowFirstColumn Description}}
+### -Name
+{{ Fill Name Description }}
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
+Type: String
+Parameter Sets: ExcelWorkSheetName
 Aliases:
 
 Required: False

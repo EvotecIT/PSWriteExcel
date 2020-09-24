@@ -5,20 +5,20 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-ExcelWorkSheetFreezePane
+# Worksheet
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ```
-Set-ExcelWorkSheetFreezePane [[-ExcelWorksheet] <ExcelWorksheet>] [-FreezeTopRow] [-FreezeFirstColumn]
- [-FreezeTopRowFirstColumn] [[-FreezePane] <Int32[]>] [<CommonParameters>]
+Worksheet [[-DataTable] <Array>] [[-Name] <String>] [[-Option] <String>] [[-TabColor] <String>] [-AutoFilter]
+ [-AutoFit] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
@@ -31,11 +31,41 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -ExcelWorksheet
-{{Fill ExcelWorksheet Description}}
+### -AutoFilter
+{{ Fill AutoFilter Description }}
 
 ```yaml
-Type: ExcelWorksheet
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoFit
+{{ Fill AutoFit Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DataTable
+{{ Fill DataTable Description }}
+
+```yaml
+Type: Array
 Parameter Sets: (All)
 Aliases:
 
@@ -46,26 +76,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FreezeFirstColumn
-{{Fill FreezeFirstColumn Description}}
+### -Name
+{{ Fill Name Description }}
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -FreezePane
-{{Fill FreezePane Description}}
-
-```yaml
-Type: Int32[]
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -76,31 +91,32 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FreezeTopRow
-{{Fill FreezeTopRow Description}}
+### -Option
+{{ Fill Option Description }}
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
 Aliases:
+Accepted values: Replace, Skip, Rename
 
 Required: False
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FreezeTopRowFirstColumn
-{{Fill FreezeTopRowFirstColumn Description}}
+### -TabColor
+{{ Fill TabColor Description }}
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

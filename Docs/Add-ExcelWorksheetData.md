@@ -13,11 +13,12 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Add-ExcelWorksheetData [[-ExcelDocument] <ExcelPackage>] [[-ExcelWorksheet] <Object>] [[-DataTable] <Object>]
- [[-Option] <String>] [[-StartRow] <Int32>] [[-StartColumn] <Int32>] [-AutoFit] [-AutoFilter] [-FreezeTopRow]
- [-FreezeFirstColumn] [-FreezeTopRowFirstColumn] [[-FreezePane] <Int32[]>] [[-ExcelWorksheetName] <String>]
- [-Transpose] [[-TransposeSort] <String>] [-PreScanHeaders] [[-TableStyle] <TableStyles>]
- [[-TableName] <String>] [[-Suppress] <Boolean>] [<CommonParameters>]
+Add-ExcelWorksheetData [[-ExcelDocument] <ExcelPackage>] [[-ExcelWorksheet] <ExcelWorksheet>]
+ [[-DataTable] <Array>] [[-Option] <String>] [[-StartRow] <Int32>] [[-StartColumn] <Int32>] [-AutoFit]
+ [-AutoFilter] [-FreezeTopRow] [-FreezeFirstColumn] [-FreezeTopRowFirstColumn] [[-FreezePane] <Int32[]>]
+ [[-ExcelWorksheetName] <String>] [-Transpose] [[-TransposeSort] <String>] [-AllProperties]
+ [[-TableStyle] <TableStyles>] [[-TableName] <String>] [[-TabColor] <String>] [[-Suppress] <Boolean>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,6 +34,21 @@ PS C:\> {{ Add example code here }}
 {{ Add example description here }}
 
 ## PARAMETERS
+
+### -AllProperties
+{{ Fill AllProperties Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: PreScanHeaders
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -AutoFilter
 {{Fill AutoFilter Description}}
@@ -68,7 +84,7 @@ Accept wildcard characters: False
 {{Fill DataTable Description}}
 
 ```yaml
-Type: Object
+Type: Array
 Parameter Sets: (All)
 Aliases:
 
@@ -98,7 +114,7 @@ Accept wildcard characters: False
 {{Fill ExcelWorksheet Description}}
 
 ```yaml
-Type: Object
+Type: ExcelWorksheet
 Parameter Sets: (All)
 Aliases:
 
@@ -200,21 +216,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PreScanHeaders
-{{Fill PreScanHeaders Description}}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -StartColumn
 {{Fill StartColumn Description}}
 
@@ -250,6 +251,21 @@ Accept wildcard characters: False
 
 ```yaml
 Type: Boolean
+Parameter Sets: (All)
+Aliases: Supress
+
+Required: False
+Position: 12
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TabColor
+{{ Fill TabColor Description }}
+
+```yaml
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -323,7 +339,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
