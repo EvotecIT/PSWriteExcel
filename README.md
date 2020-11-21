@@ -37,6 +37,8 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 ## Changelog
 
+- 0.1.12 - 2020.11.21
+  - Added back missing cmdlet which would prevent `Excel` cmdlet from working
 - 0.1.11 - 2020.09.24
   - `Set-ExcelWorkSheetCellStyle` is now usable, it wasn't even half working before.
 - 0.1.10 - 2020.07.31
