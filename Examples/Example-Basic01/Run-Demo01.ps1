@@ -1,4 +1,4 @@
-﻿Import-Module PSWriteExcel -Force
+﻿Import-Module $PSScriptRoot\..\..\PSWriteExcel.psd1 -Force #-Verbose
 
 $Process = Get-Process | Select-Object -First 5
 
