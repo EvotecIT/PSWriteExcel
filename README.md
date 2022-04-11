@@ -20,6 +20,13 @@
 
 # PSWriteExcel - PowerShell Module
 
+**New version of this module will be developed under [PSWriteOffice](https://github.com/EvotecIT/PSWriteOffi) project.**
+***This module will no longer be developed!*** It has been replaced by [PSWriteOffice](https://github.com/EvotecIT/PSWriteOffice) project which will be combination of Word, Excel and in future PowerPoint features. No new features, fixes will be added, but it will continue to work.
+
+***
+
+## What is PSWriteExcel?
+
 [PSWriteExcel](https://evotec.xyz/hub/scripts/pswriteexcel-powershell-module/) is very basic (at the moment) PowerShell module to create Microsoft Excel workbooks without Microsoft Excel installed. It's main purpose is to support/create [Excel for PSWinDocumentation](https://evotec.xyz/hub/scripts/pswindocumentation-powershell-module/) project. Depending on requirements of this project (and maybe few others) it may evolve or cover more feature sets. After some basic testing it seems to work fine on **Windows** and **Linux** and **MacOS**.
 
 More information can be found on dedicated page for [PSWriteExcel](https://evotec.xyz/hub/scripts/pswriteexcel-powershell-module/) module.
@@ -33,7 +40,7 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 ## Example usage of Add-ExcelWorksheetData in action
 
-![image](https://evotec.xyz/wp-content/uploads/2018/08/PSWriteExcel.gif.pagespeed.ce.WKvsf00WoC.gif)
+![image](https://evotec.xyz/wp-content/uploads/2018/08/PSWriteExcel.gif)
 
 ## Changelog
 
