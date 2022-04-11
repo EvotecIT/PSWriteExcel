@@ -20,7 +20,7 @@
 
 # PSWriteExcel - PowerShell Module
 
-**New version of this module will be developed under [PSWriteOffice](https://github.com/EvotecIT/PSWriteOffi) project.**
+**New version of this module will be developed under [PSWriteOffice](https://github.com/EvotecIT/PSWriteOffice) project.**
 ***This module will no longer be developed!*** It has been replaced by [PSWriteOffice](https://github.com/EvotecIT/PSWriteOffice) project which will be combination of Word, Excel and in future PowerPoint features. No new features, fixes will be added, but it will continue to work.
 
 ***
