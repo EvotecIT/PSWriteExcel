@@ -8,31 +8,25 @@ function Get-ExcelWorkSheetData {
     $Dimensions = $ExcelWorkSheet.Dimension
     $CellRow = 1
 
-    $ExcelDataArray = @()
-
-    $Headers = @() # 1st row
+    $Headers = [System.Collections.Generic.List[string]]::new()
     for ($CellColumn = 1; $CellColumn -lt $Dimensions.Columns + 1; $CellColumn++) {
         $Heading = $ExcelWorkSheet.Cells[$CellRow, $CellColumn].Value
         if ([string]::IsNullOrEmpty($Heading)) {
             $Heading = $ExcelWorkSheet.Cells[$CellRow, $CellColumn].Address
         }
-        $Headers += $Heading
+        if ($Headers.Contains($Heading)) {
+            $Heading = $Heading + "_" + $ExcelWorkSheet.Cells[$CellRow, $CellColumn].Address
+        }
+        $Headers.Add($Heading)
     }
-    Write-Verbose "Get-ExcelWorkSheetData - Headers: $($Headers -join ',')"
-
-    for ($CellRow = 2; $CellRow -lt $Dimensions.Rows + 1; $CellRow++) {
-
-        $ExcelData = [PsCustomObject] @{  }
+    [Array] $ExcelDataArray = for ($CellRow = 2; $CellRow -lt $Dimensions.Rows + 1; $CellRow++) {
+        $ExcelData = [ordered] @{ }
         for ($CellColumn = 1; $CellColumn -lt $Dimensions.Columns + 1; $CellColumn++) {
             $ValueContent = $ExcelWorkSheet.Cells[$CellRow, $CellColumn].Value
-            #$ValueContent
             $ColumnName = $Headers[$CellColumn - 1]
-
-            # Write-Verbose "CellRow: $CellRow  CellColumn: $CellColumn ColumnName: $ColumnName ValueContent: $ValueContent"
-            Add-Member -InputObject $ExcelData -MemberType NoteProperty -Name $ColumnName -Value $ValueContent
-            $ExcelData.$ColumnName = $ValueContent
+            $ExcelData[$ColumnName] = $ValueContent
         }
-        $ExcelDataArray += $ExcelData
+        [PSCustomObject] $ExcelData
     }
-    return $ExcelDataArray
+    $ExcelDataArray
 }
