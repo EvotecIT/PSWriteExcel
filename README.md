@@ -44,6 +44,8 @@ There are couple of more commands in play that may come useful. Feel free to exp
 
 ## Changelog
 
+- 0.1.14 - 2022.15.16
+  - Fixes bad release
 - 0.1.13 - 2022.15.16
   - Fixes an issue when column names are duplicates [#5](https://github.com/EvotecIT/PSWriteExcel/issues/5)
 - 0.1.12 - 2020.11.21

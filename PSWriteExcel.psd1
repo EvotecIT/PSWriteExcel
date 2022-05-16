@@ -8,7 +8,7 @@
     Description          = 'Little project to create Excel files without Microsoft Excel being installed.'
     FunctionsToExport    = @('Add-ExcelWorkSheet', 'Add-ExcelWorkSheetCell', 'Add-ExcelWorksheetData', 'ConvertFrom-Excel', 'ConvertTo-Excel', 'Excel', 'Find-ExcelDocumentText', 'Get-ExcelDocument', 'Get-ExcelProperties', 'Get-ExcelTranslateFromR1C1', 'Get-ExcelTranslateToR1C1', 'Get-ExcelWorkSheet', 'Get-ExcelWorkSheetCell', 'Get-ExcelWorkSheetData', 'New-ExcelDocument', 'Remove-ExcelWorksheet', 'Request-ExcelWorkSheetCalculation', 'Save-ExcelDocument', 'Set-ExcelProperties', 'Set-ExcelWorksheetAutoFilter', 'Set-ExcelWorksheetAutoFit', 'Set-ExcelWorkSheetCellStyle', 'Set-ExcelWorkSheetFreezePane', 'Set-ExcelWorkSheetTableStyle', 'WorkbookProperties', 'Worksheet')
     GUID                 = '82232c6a-27f1-435d-a496-929f7221334b'
-    ModuleVersion        = '0.1.13'
+    ModuleVersion        = '0.1.14'
     PowerShellVersion    = '5.1'
     PrivateData          = @{
         PSData = @{
