@@ -16,7 +16,7 @@ $Configuration = @{
             # ID used to uniquely identify this module
             GUID                 = '82232c6a-27f1-435d-a496-929f7221334b'
             # Version number of this module.
-            ModuleVersion        = '0.1.14'
+            ModuleVersion        = '0.1.X'
             # ID used to uniquely identify this module
             # Author of this module
             Author               = 'Przemyslaw Klys'
@@ -136,7 +136,7 @@ $Configuration = @{
             Merge               = $true
             MergeMissing        = $true
             LibrarySeparateFile = $true
-            LibraryDotSource    = $false
+            LibraryDotSource    = $true
             ClassesDotSource    = $false
             SignMerged          = $true
             CreateFileCatalog   = $false # not working
@@ -151,10 +151,10 @@ $Configuration = @{
             Verbose         = $false
         }
         PublishModule      = @{  # requires Enable to be on to process all of that
-            Enabled      = $false
+            Enabled      = $true
             Prerelease   = ''
             RequireForce = $false
-            GitHub       = $false
+            GitHub       = $true
         }
     }
 }
